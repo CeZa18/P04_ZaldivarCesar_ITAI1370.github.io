@@ -73,8 +73,8 @@
         <p>
             The QR code system originated in Japan and was developed by engineers at
             <strong>DENSO WAVE</strong>, an auto parts manufacturing company affiliated with Toyota.
-            The development team was led by <strong>Masahiro Hara</strong>, with contributions from <strong>Atsushi
-            Tano, who worked in system solutions. The technology was created in the 1990s
+            The development team was led by <strong>Masahiro Hara</strong>, with contributions from 
+            <strong>Atsushi Tano</strong>, who worked in system solutions. The technology was created in the 1990s
             to address the growing limitations of traditional barcodes, which had been
             widely used during the 1980s to track automotive parts.
         </p>
@@ -113,7 +113,7 @@
                 <li><strong>Function:</strong> It is primarily used for inventory tracking and retail 
                     (UPC codes). It identifies a specific product but usually requires a connection 
                     to a database to provide detailed information. In AR, barcodes can serve as simple 
-                    markers but offer limited functionality compared to QR codes.</li>
+                     markers but offer limited functionality compared to QR codes.</li>
             </ul>
         </p>
     </section>
@@ -154,21 +154,32 @@
         <h2>Advantages and Disadvantages for AR</h2>
 
         <h3>QR Codes for AR</h3>
-        <p><strong>Pros:</strong> High data capacity and easy recognition from different angles.</p>
-        <p><strong>Cons:</strong> Can appear visually distracting in designs.</p>
+        <p>
+            <ul>
+                <li><strong>Pros:</strong> High data density allows them to point directly to complex AR assets; 
+                    they are easily recognized by smartphone cameras from various angles.</li>
+                <li><strong>Cons:</strong> They can be aesthetically "busy" or distracting when placed on a design.</li>
+            </ul>
 
         <h3>Barcodes for AR</h3>
-        <p><strong>Pros:</strong> Familiar and commonly used in retail environments.</p>
-        <p><strong>Cons:</strong> Limited data and poor performance for 3D tracking.</p>
+        <p>
+            <ul>
+                <li><strong>Pros:</strong> Familiar in retail settings; can be used to pull up product reviews or "try-on" features in-store.</li>
+                <li><strong>Cons:</strong> Very limited data; the scanner must be relatively level with the code, making "tracking" a 3D object difficult.</li>
+        </p>
     </section>
 
     <section>
         <h2>Why are QR Codes more suitable for AR?</h2>
         <p>
-            QR codes provide better support for augmented reality because of their
-            square shape, high data capacity, and built-in error correction.
-            These features allow QR codes to act as spatial anchors that keep
-            digital objects aligned even as the user moves.
+            QR codes are the superior choice for AR for three main reasons:
+            <ol></ol>
+                <li><strong>3D Tracking (Pose Estimation):</strong> Because a QR code has distinct corners and a square shape, 
+                    AR software can use it as a spatial anchor. This allows the digital object to stay "pinned" to the code even as you move your phone around it.</li>
+                <li><strong>Information Volume:</strong> AR experiences often require large URLs or data strings to load 3D models. QR codes can handle this; barcodes cannot.</li>
+                <li><strong>Readability:</strong> QR codes have built-in error correction. In AR, 
+                    where lighting might be uneven or the user's hand might shake, the QR code remains functional while a barcode might fail.</li>
+            </ol>
         </p>
     </section>
 
