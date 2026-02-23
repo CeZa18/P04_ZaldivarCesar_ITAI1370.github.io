@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>What is Ray Tracing?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h1, h2, h3 {
+            color: #1a1a1a;
+        }
+
+        h1 {
+            border-bottom: 3px solid #444;
+            padding-bottom: 10px;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table, th, td {
+            border: 1px solid #aaa;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #eaeaea;
+        }
+
+        figure {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        figcaption {
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 8px;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #ccc;
+            font-size: 0.9em;
+        }
+
+        a {
+            color: #0066cc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>What is Ray Tracing?</h1>
+
+    <section>
+        <p>
+            At its core, <strong>ray tracing</strong> is a rendering technique used to generate an image
+            by tracing the path of light as pixels in an image plane and simulating the effects of its
+            encounters with virtual objects.
+        </p>
+
+        <p>
+            While traditional rendering (rasterization) works by projecting 3D polygons onto a 2D screen,
+            ray tracing mimics the way light works in the real world. However, it does so in reverse:
+            it “shoots” rays of light from the camera (your eye) into the scene.
+        </p>
+
+        <p>
+            Another way to think about it is tracing the light from the point of view of the observer
+            back to its original emitter, including all the paths and objects the light traverses through.
+        </p>
+    </section>
+
+    <section>
+        <h2>How It Works</h2>
+        <ul>
+            <li><strong>Primary Rays:</strong> A ray is sent from the viewpoint through each pixel on the screen.</li>
+            <li><strong>Intersection:</strong> The computer calculates where that ray hits an object in the 3D environment.</li>
+            <li><strong>Secondary Rays:</strong> Once an object is hit, the system calculates reflections, refractions,
+                and shadows by bouncing more rays toward light sources or other objects.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Where Is It Used?</h2>
+        <p>
+            Ray tracing was once reserved for high-end film production because it required massive
+            amounts of computing power. Today, thanks to advances in GPU technology (such as NVIDIA’s RTX
+            series), it is becoming standard across several industries:
+        </p>
+
+        <ul>
+            <li><strong>Film and Animation:</strong> Used in modern animated movies and visual effects to achieve
+                photorealistic lighting.</li>
+            <li><strong>Video Games:</strong> Enables real-time reflections, realistic shadows, and global illumination.</li>
+            <li><strong>Architectural Visualization:</strong> Shows realistic sunlight and interior lighting conditions.</li>
+            <li><strong>Product Design:</strong> Allows manufacturers to render accurate materials and finishes before production.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Real-World Examples</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Example</th>
+                    <th>Application</th>
+                    <th>Why Ray Tracing Matters</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Cyberpunk 2077</strong></td>
+                    <td>Real-time Lighting</td>
+                    <td>Uses path tracing for realistic neon reflections on wet city streets.</td>
+                </tr>
+                <tr>
+                    <td><strong>Toy Story 4</strong></td>
+                    <td>Offline Rendering</td>
+                    <td>Handled complex reflections in detailed indoor scenes.</td>
+                </tr>
+                <tr>
+                    <td><strong>IKEA Catalog</strong></td>
+                    <td>Interior Design</td>
+                    <td>Most images are 3D renders created using ray tracing.</td>
+                </tr>
+                <tr>
+                    <td><strong>Minecraft RTX</strong></td>
+                    <td>Education / Tech Demo</td>
+                    <td>Demonstrates realistic light bouncing in a simple environment.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section
+
+    <figure>
+        <img src="RaytracingDiagram.png" alt="Ray Tracing Diagram" width="500">
+        <figcaption>
+            Figure 1: Ray Tracing Basics
+            (<a href="https://en.wikipedia.org/wiki/Ray_tracing_(graphics)" target="_blank">Source</a>)
+        </figcaption>
+    </figure>
+
+    <footer>
+        <h3>References</h3>
+        <ul>
+            <li>
+                NVIDIA Developer. <em>Ray Tracing</em>.
+                <a href="https://developer.nvidia.com/discover/ray-tracing" target="_blank">
+                    https://developer.nvidia.com/discover/ray-tracing
+                </a>
+            </li>
+            <li>
+                Wikipedia contributors. <em>Ray Tracing (Graphics)</em>.
+                <a href="https://en.wikipedia.org/wiki/Ray_tracing_(graphics)" target="_blank">
+                    https://en.wikipedia.org/wiki/Ray_tracing_(graphics)
+                </a>
+            </li>
+        </ul>
+    </footer>
+
+</body>
+</html>
+``
