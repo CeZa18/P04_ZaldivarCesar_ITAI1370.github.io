@@ -2,5 +2,21 @@ fetch("nav.html")
     .then(response => response.text())
     .then(data => {
         document.getElementById("nav-placeholder").innerHTML = data;
-    });
-``
+    })
+    .catch(error => console.error("Error loading navigation:", error));
+    
+let backToTopButton = document.getElementById("back-to-top");
+window.onscroll = function() {scrollFunction()};
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        backToTopButton.style.display = "block";
+    } else {
+        backToTopButton.style.display = "none";
+    }
+}
+
+function scrollToTop() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
