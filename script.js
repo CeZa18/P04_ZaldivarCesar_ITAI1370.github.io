@@ -5,6 +5,8 @@ fetch("nav.html")
     })
     .catch(error => console.error("Error loading navigation:", error));
     
+
+
 let backToTopButton = document.getElementById("back-to-top");
 window.onscroll = function() {scrollFunction()};
 function scrollFunction() {
