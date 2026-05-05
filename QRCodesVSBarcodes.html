@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QR Codes vs Barcodes</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<header class="site-banner">
+    <h1>ITAI1370 - Artificial Intelligence History</h1>
+    <p>By Cesar Zaldivar</p>
+</header>
+<body>
+<div id="nav-placeholder"></div>
+    <h1>QR Codes vs Barcodes</h1>
+
+    <section>
+        <h2>What are QR Codes and how do they work?</h2>
+        <p>
+            A <strong>QR code</strong> is a two-dimensional (2D) matrix barcode. Unlike
+            traditional barcodes, it stores information both horizontally and vertically.
+        </p>
+
+        <p>
+            <ul>
+                <li><strong>How it works:</strong> It uses a series of black squares arranged on a grid. 
+                Three large squares in the corners (position detection patterns) help 
+                the scanner determine the code’s orientation and structure.</li>
+                <li><strong>Function:</strong> It typically triggers an action, such as opening a URL,
+                     downloading a file, or in the case of AR, launching a 3D digital overlay.</li>
+            </ul>
+            
+        </p>
+
+    </section>
+
+    <section>
+        <h2>History of QR Codes</h2>
+        <p>
+            The QR code system originated in Japan and was developed by engineers at
+            <strong>DENSO WAVE</strong>, an auto parts manufacturing company affiliated with Toyota.
+            The development team was led by <strong>Masahiro Hara</strong>, with contributions from 
+            <strong>Atsushi Tano</strong>, who worked in system solutions. The technology was created in the 1990s
+            to address the growing limitations of traditional barcodes, which had been
+            widely used during the 1980s to track automotive parts.
+        </p>
+
+        <p>
+            As manufacturing processes became more complex, the barcode system reached its capacity limits. 
+            Traditional barcodes could store only about 20 alphanumeric characters and often required multiple 
+            barcodes to be scanned simultaneously to access sufficient information. In 1992, Masahiro Hara 
+            was tasked with developing a more efficient scanning system that could handle increased data 
+            demands across multiple production sites.
+        </p>
+
+        <p>
+            Unlike one-dimensional barcodes, which store data only in a horizontal direction, 
+            QR codes are two-dimensional and store information both horizontally and vertically. 
+            This design significantly increased data capacity and scanning efficiency. To further 
+            improve performance, the QR code incorporated position detection patterns—large square 
+            markers located at three corners of the code. These patterns allow scanners to quickly 
+            recognize the code’s orientation, enabling fast and accurate reading even under challenging 
+            conditions (QR Code Development Story｜Technologies｜DENSO WAVE, n.d.).
+        </p>
+        
+    </section>
+
+    <section>
+        <h2>What are Barcodes and how do they work?</h2>
+        <p>
+            A <strong>barcode</strong> is a one-dimensional (1D) code represented by
+            parallel black lines and white spaces.
+        </p>
+
+        <p>
+            <ul>
+                <li><strong>How it works:</strong> The barcode is read by a laser or optical scanner 
+                    that measures the light reflected off the white spaces between the black bars.</li>
+                <li><strong>Function:</strong> It is primarily used for inventory tracking and retail 
+                    (UPC codes). It identifies a specific product but usually requires a connection 
+                    to a database to provide detailed information. In AR, barcodes can serve as simple 
+                     markers but offer limited functionality compared to QR codes.</li>
+            </ul>
+        </p>
+    </section>
+
+    <section>
+        <h2>QR Codes vs Barcodes</h2>
+
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>Barcode (1D)</th>
+                <th>QR Code (2D)</th>
+            </tr>
+            <tr>
+                <td>Data Capacity</td>
+                <td>Low (20–25 characters)</td>
+                <td>High (thousands of characters)</td>
+            </tr>
+            <tr>
+                <td>Dimensions</td>
+                <td>Horizontal only</td>
+                <td>Horizontal and vertical</td>
+            </tr>
+            <tr>
+                <td>Error Correction</td>
+                <td>None</td>
+                <td>High (up to 30% damage)</td>
+            </tr>
+            <tr>
+                <td>AR Utility</td>
+                <td>Limited</td>
+                <td>Excellent</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h2>Advantages and Disadvantages for AR</h2>
+
+        <h3>QR Codes for AR</h3>
+        <p>
+            <ul>
+                <li><strong>Pros:</strong> High data density allows them to point directly to complex AR assets; 
+                    they are easily recognized by smartphone cameras from various angles.</li>
+                <li><strong>Cons:</strong> They can be aesthetically "busy" or distracting when placed on a design.</li>
+            </ul>
+
+        <h3>Barcodes for AR</h3>
+        <p>
+            <ul>
+                <li><strong>Pros:</strong> Familiar in retail settings; can be used to pull up product reviews or "try-on" features in-store.</li>
+                <li><strong>Cons:</strong> Very limited data; the scanner must be relatively level with the code, making "tracking" a 3D object difficult.</li>
+        </p>
+    </section>
+
+    <section>
+        <h2>Why are QR Codes more suitable for AR?</h2>
+        <p>
+            QR codes are the superior choice for AR for three main reasons:
+            <ol></ol>
+                <li><strong>3D Tracking (Pose Estimation):</strong> Because a QR code has distinct corners and a square shape, 
+                    AR software can use it as a spatial anchor. This allows the digital object to stay "pinned" to the code even as you move your phone around it.</li>
+                <li><strong>Information Volume:</strong> AR experiences often require large URLs or data strings to load 3D models. QR codes can handle this; barcodes cannot.</li>
+                <li><strong>Readability:</strong> QR codes have built-in error correction. In AR, 
+                    where lighting might be uneven or the user's hand might shake, the QR code remains functional while a barcode might fail.</li>
+            </ol>
+        </p>
+    </section>
+
+    <footer>
+        <h2>References</h2>
+        <p>
+            DENSO WAVE. <em>QR Code Development Story</em>.
+            <a href="https://www.denso-wave.com/en/technology/vol1.html" target="_blank">
+                https://www.denso-wave.com/en/technology/vol1.html
+            </a>
+        </p>
+    </footer>
+    <button id="back-to-top" onclick="scrollToTop()">Back to Top</button>
+<script src="script.js"></script>
+</body>
+</html>

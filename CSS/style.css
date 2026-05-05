@@ -146,3 +146,44 @@ nav a:hover {
 .game-info {
   margin-left: 20px;
 }
+/* ── Homepage Intro Section ── */
+#intro {
+    max-width: 860px;
+    margin: 60px auto;
+    padding: 0 24px;
+}
+
+#intro blockquote {
+    border-left: 4px solid #1a4d8f;
+    margin: 0 0 36px 0;
+    padding: 16px 24px;
+    background-color: #e6eef8;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: #3c4043;
+}
+
+#intro blockquote p {
+    margin: 0 0 10px 0;
+    font-size: 1.05rem;
+}
+
+#intro blockquote footer {
+    font-size: 0.85rem;
+    color: #5f6368;
+    font-style: normal;
+    margin-top: 0;
+}
+
+#intro p {
+    font-size: 1.1rem;
+    margin: 0 0 20px 0;
+}
+
+.intro-byline {
+    font-size: 0.9rem;
+    color: #5f6368;
+    border-top: 1px solid #dadce0;
+    padding-top: 16px;
+    margin: 12px 0 0 0;
+}
