@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<header class="site-banner">
+    <h1>ITAI1370 - Artificial Intelligence History</h1>
+    <p>By Cesar Zaldivar</p>
+</header>
+<body>
+<div id="nav-placeholder"></div>
+    <h1>Tic-Tac-Toe</h1>
+    
+    <section>
+        <p>
+            Tic-Tac-Toe is a classic two-player game where players take turns marking spaces in a 3x3 grid. The objective is to be the first to get three of their marks in a row, either horizontally, vertically, or diagonally.
+        </p>
+        <p>
+            The game is simple yet strategic, requiring players to anticipate their opponent's moves while planning their own. It is often used as an educational tool to teach concepts of strategy and critical thinking.
+        </p>
+    </section> 
+    
+    <section>
+        <h2>How to Play</h2>
+        <ol>
+            <li>Player X goes first and marks an empty cell with an "X".</li>
+            <li>Player O goes next and marks an empty cell with an "O".</li>
+            <li>Players alternate turns until one player gets three of their marks in a row or all cells are filled.</li>
+            <li>If all cells are filled and no player has three in a row, the game ends in a draw.</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>Game Board</h2>
+        <div id="game-board">
+        <script src="TicTacToe.js"></script>
+            <!-- The game board will be generated here by the JavaScript code -->
+        </div>       
+    </section>
+
+    <button onclick="resetGame()">Reset Game</button>
+    <button id="back-to-top" onclick="scrollToTop()">Back to Top</button>
+<script src="script.js"></script>
+</body>
+</html>

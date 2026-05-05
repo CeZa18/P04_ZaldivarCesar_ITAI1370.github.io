@@ -1,3 +1,21 @@
+.site-banner {
+    background-color: #1a4d8f;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.site-banner h1 {
+    margin: 0;
+    font-size: 2.5em;
+    color: #e6eef8;
+}
+
+.site-banner p {
+    margin: 5px 0 0;
+    font-size: 1.2em;
+}
+
 body {
             font-family: Arial, Helvetica, sans-serif;
             line-height: 1.6;
@@ -37,8 +55,18 @@ body {
 /* Navigation Bar Styles */
 nav {
     background-color: #1a4d8f;
+    position: sticky; /* Makes the navbar stick to the top */
+    top: 0; /* Position it at the top of the viewport */
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays above other content */
     padding: 10px 0;
     margin-bottom: 30px;
+}
+
+.sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 nav ul {
@@ -77,4 +105,44 @@ nav a:hover {
     border-radius: 5px;
     cursor: pointer;
     display: none; /* Hidden by default */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+
+
+.square {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 34px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 34px;
+}
+
+.board-row:after {
+  clear: both;
+  content: '';
+  display: table;
+}
+
+.status {
+  margin-bottom: 10px;
+}
+.game {
+  display: flex;
+  flex-direction: row;
+}
+
+.game-info {
+  margin-left: 20px;
 }

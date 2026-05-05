@@ -1,0 +1,17 @@
+{
+  "name": "react.dev",
+  "version": "0.0.0",
+  "main": "C:\\Users\\cesar\\OneDrive\\Desktop\\School HCC\\Spring2026\\6262-ITAI-1370-Artificial Intelligence Hist-RT-15946\\html-files\\P04_ZaldivarCesar_ITAI1370.github.io\\index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "react-scripts": "^5.0.0"
+  },
+  "devDependencies": {}
+}
