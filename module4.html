@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Module 4 — Raytracing &amp; QR Codes | ITAI 1370 Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="site-banner">
+        <h1>ITAI 1370 &mdash; AI History, Theory &amp; Platforms</h1>
+        <p>End-of-Year Portfolio &mdash; Cesar Zaldivar | May 2026</p>
+    </div>
+    <nav class="sticky-nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="module1.html">M1</a></li>
+            <li><a href="module2.html">M2</a></li>
+            <li><a href="module3.html">M3</a></li>
+            <li><a href="module4.html">M4</a></li>
+            <li><a href="module5.html">M5</a></li>
+            <li><a href="module6.html">M6</a></li>
+            <li><a href="module7.html">M7</a></li>
+            <li><a href="module8.html">M8</a></li>
+            <li><a href="module9.html">M9</a></li>
+            <li><a href="module10.html">M10</a></li>
+            <li><a href="module11.html">M11</a></li>
+            <li><a href="module12.html">M12</a></li>
+            <li><a href="reflections.html">Reflections</a></li>
+        </ul>
+    </nav>
+
+    <h1>Module 4 &mdash; Week 4</h1>
+
+    <!-- ── PART A: Raytracing ── -->
+    <h2>Assignment A04: What is Raytracing?</h2>
+    <table>
+        <tr><th>Assignment Type</th><td>Assignment &mdash; Technical Analysis</td></tr>
+        <tr><th>Topic</th><td>Raytracing rendering technique and real-world applications</td></tr>
+    </table>
+
+    <h3>Summary</h3>
+    <p>
+        Raytracing is a rendering technique used to generate an image by tracing the path of light as pixels in an image
+        plane and simulating the effects of its encounters with virtual objects. Unlike traditional rendering
+        (rasterization), which projects 3D polygons onto a 2D screen, raytracing mimics the way light works in the real
+        world &mdash; but in reverse: it &ldquo;shoots&rdquo; rays of light from the camera into the scene
+        (NVIDIA Developer, n.d.).
+    </p>
+
+    <h3>How It Works</h3>
+    <table>
+        <tr><th>Step</th><th>Description</th></tr>
+        <tr><td><strong>1. Primary Rays</strong></td><td>A ray is sent from the viewpoint through each pixel on the screen</td></tr>
+        <tr><td><strong>2. Intersection</strong></td><td>The computer calculates where that ray hits an object in the 3D environment</td></tr>
+        <tr><td><strong>3. Secondary Rays</strong></td><td>Reflections, refractions, and shadows are calculated by bouncing more rays toward light sources</td></tr>
+    </table>
+
+    <img src="images/M04a_Raytracing.png" alt="Raytracing diagram showing primary and secondary rays" style="max-width:100%; margin: 20px 0;" />
+    <img src="images/M04a_Raytracing_Diagram.png" alt="Classic raytracing light path diagram" style="max-width:70%; margin: 20px 0; display:block;" />
+
+    <h3>Real-World Examples</h3>
+    <table>
+        <tr>
+            <th>Example</th>
+            <th>Application</th>
+            <th>Why Raytracing Matters</th>
+        </tr>
+        <tr>
+            <td>Cyberpunk 2077</td>
+            <td>Real-time Lighting</td>
+            <td>Path Tracing creates incredibly realistic neon reflections on wet city streets</td>
+        </tr>
+        <tr>
+            <td>Toy Story 4</td>
+            <td>Offline Rendering</td>
+            <td>Pixar used complex raytracing for intricate reflections in the antique store scenes</td>
+        </tr>
+        <tr>
+            <td>IKEA Catalog</td>
+            <td>Interior Design</td>
+            <td>Over 75% of catalog images are 3D renders using raytracing, not real photographs</td>
+        </tr>
+        <tr>
+            <td>Minecraft RTX</td>
+            <td>Education / Tech Demo</td>
+            <td>Shows the stark difference between flat lighting and realistic light bouncing</td>
+        </tr>
+    </table>
+
+    <!-- ── PART B: QR Codes ── -->
+    <h2>Puzzle P04: QR Codes, Barcodes, and Augmented Reality</h2>
+    <table>
+        <tr><th>Assignment Type</th><td>Puzzle &mdash; Research &amp; Web Development</td></tr>
+        <tr><th>Topic</th><td>QR Code history, comparison with barcodes, and AR applications</td></tr>
+        <tr><th>Live Website</th><td><a href="https://module04-zaldivarcesar-itai1370.netlify.app/" target="_blank">module04-zaldivarcesar-itai1370.netlify.app</a></td></tr>
+    </table>
+
+    <h3>Summary</h3>
+    <p>
+        A QR code is a two-dimensional matrix barcode that stores information both horizontally and vertically.
+        The QR code system was developed in the 1990s by engineers at <strong>DENSO WAVE</strong> (affiliated with Toyota),
+        led by <strong>Masahiro Hara</strong>, to address the growing limitations of traditional barcodes in automotive
+        manufacturing. Traditional barcodes could store only about 20 alphanumeric characters, which was insufficient
+        for complex multi-site production tracking.
+    </p>
+
+    <img src="images/M04b_QR_vs_Barcode.png" alt="QR Code vs Barcode side-by-side comparison" style="max-width:100%; margin: 20px 0;" />
+    <img src="images/M04b_QR_Code.png" alt="QR code example" style="max-width:40%; margin: 20px 0; display:block;" />
+
+    <h3>QR Codes vs. Barcodes</h3>
+    <table>
+        <tr>
+            <th>Feature</th>
+            <th>Barcode (1D)</th>
+            <th>QR Code (2D)</th>
+        </tr>
+        <tr>
+            <td>Data Capacity</td>
+            <td>Low (~20&ndash;25 characters)</td>
+            <td>High (thousands of characters)</td>
+        </tr>
+        <tr>
+            <td>Dimensions</td>
+            <td>Horizontal only</td>
+            <td>Horizontal and Vertical</td>
+        </tr>
+        <tr>
+            <td>Error Correction</td>
+            <td>None &mdash; unreadable if damaged</td>
+            <td>High &mdash; readable even if 30% is damaged</td>
+        </tr>
+        <tr>
+            <td>AR Utility</td>
+            <td>Limited</td>
+            <td>Excellent &mdash; spatial anchoring for AR overlays</td>
+        </tr>
+    </table>
+
+    <h2>What I Learned</h2>
+    <p>
+        Raytracing fundamentally changed how we create photorealistic digital images, and GPU advances have now made
+        real-time raytracing accessible in consumer video games. The IKEA example was especially eye-opening &mdash;
+        most people assume catalog images are photographs, but the majority are computer-generated renders.
+    </p>
+    <p>
+        Building a website to present the QR code research was one of the most hands-on experiences of the semester.
+        I learned that QR codes are far more sophisticated than they appear, with built-in error correction and spatial
+        orientation features that make them ideal for augmented reality anchoring. You can visit my live site at
+        <a href="https://module04-zaldivarcesar-itai1370.netlify.app/" target="_blank">module04-zaldivarcesar-itai1370.netlify.app</a>.
+    </p>
+
+    <h2>Citations</h2>
+    <p>NVIDIA Developer. &ldquo;Ray Tracing.&rdquo; <em>NVIDIA</em>, n.d.,
+    <a href="https://developer.nvidia.com/discover/ray-tracing" target="_blank">https://developer.nvidia.com/discover/ray-tracing</a>.</p>
+    <p>DENSO WAVE. &ldquo;QR Code Development Story.&rdquo; <em>DENSO WAVE Technologies</em>, n.d.</p>
+
+    <footer>
+        <p>&copy; 2026 Cesar Zaldivar &mdash; ITAI 1370 | Houston Community College</p>
+    </footer>
+    <button id="back-to-top" onclick="scrollToTop()">Back to Top</button>
+    <script src="script.js"></script>
+    </script>
+</body>
+</html>

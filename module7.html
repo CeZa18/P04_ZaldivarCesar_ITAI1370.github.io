@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Module 7 — Neural Networks &amp; Deep Traffic | ITAI 1370 Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="site-banner">
+        <h1>ITAI 1370 &mdash; AI History, Theory &amp; Platforms</h1>
+        <p>End-of-Year Portfolio &mdash; Cesar Zaldivar | May 2026</p>
+    </div>
+    <nav class="sticky-nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="module1.html">M1</a></li>
+            <li><a href="module2.html">M2</a></li>
+            <li><a href="module3.html">M3</a></li>
+            <li><a href="module4.html">M4</a></li>
+            <li><a href="module5.html">M5</a></li>
+            <li><a href="module6.html">M6</a></li>
+            <li><a href="module7.html">M7</a></li>
+            <li><a href="module8.html">M8</a></li>
+            <li><a href="module9.html">M9</a></li>
+            <li><a href="module10.html">M10</a></li>
+            <li><a href="module11.html">M11</a></li>
+            <li><a href="module12.html">M12</a></li>
+            <li><a href="reflections.html">Reflections</a></li>
+        </ul>
+    </nav>
+
+    <h1>Module 7 &mdash; Week 7</h1>
+
+    <!-- ── PART A: Neural Network Experiment ── -->
+    <h2>Assignment A07: Neural Network Layer Architecture Comparison</h2>
+    <table>
+        <tr><th>Assignment Type</th><td>Assignment &mdash; Experimental Report</td></tr>
+        <tr><th>Topic</th><td>Comparing ascending vs. descending neuron distributions in hidden layers using TensorFlow</td></tr>
+    </table>
+
+    <h3>Test Environment</h3>
+    <table>
+        <tr><th>Parameter</th><th>Value</th></tr>
+        <tr><td>Dataset</td><td>Regression</td></tr>
+        <tr><td>Features</td><td>X1, X2, X1&sup2;, X2&sup2;, X1X2, sin(X1), sin(X2)</td></tr>
+        <tr><td>Noise</td><td>50</td></tr>
+        <tr><td>Batch Size</td><td>15</td></tr>
+        <tr><td>Train / Test Ratio</td><td>30%</td></tr>
+        <tr><td>Learning Rate</td><td>0.1</td></tr>
+        <tr><td>Activation Function</td><td>Tanh</td></tr>
+        <tr><td>Regularization</td><td>None</td></tr>
+    </table>
+
+    <img src="images/M07_NN_Architecture.png" alt="Ascending vs descending neural network architecture comparison" style="max-width:100%; margin: 20px 0;" />
+    <img src="images/M07_Neural_Network.png" alt="Neural network diagram with input, hidden, and output layers" style="max-width:70%; margin: 20px 0; display:block;" />
+
+    <h3>Test A &mdash; Ascending Architecture (2, 3, 4, 5)</h3>
+    <table>
+        <tr><th>Epoch</th><th>Test Loss</th><th>Training Loss</th></tr>
+        <tr><td>Initial</td><td>0.140</td><td>0.167</td></tr>
+        <tr><td>176</td><td>0.040</td><td>0.037</td></tr>
+        <tr><td>503</td><td>0.033</td><td>0.031</td></tr>
+        <tr><td>1,045</td><td>0.033</td><td>0.031</td></tr>
+    </table>
+    <p><strong>Conclusion:</strong> The ascending architecture stabilized quickly and produced consistent, stable results
+    after epoch 500. No degradation was observed over extended training.</p>
+
+    <h3>Test B &mdash; Descending Architecture (5, 4, 3, 2)</h3>
+    <table>
+        <tr><th>Epoch</th><th>Test Loss</th><th>Training Loss</th></tr>
+        <tr><td>Initial</td><td>0.151</td><td>0.184</td></tr>
+        <tr><td>200</td><td>0.036</td><td>0.030</td></tr>
+        <tr><td>525</td><td>0.037</td><td>0.030</td></tr>
+        <tr><td>1,028</td><td>0.041</td><td>0.032</td></tr>
+    </table>
+    <p><strong>Conclusion:</strong> The descending architecture took longer to stabilize and showed signs of test loss
+    degradation over extended training, contrary to the expectation that funnel-shaped architectures are always superior.</p>
+
+    <!-- ── PART B: Deep Traffic ── -->
+    <h2>Lab L07: Deep Traffic Model Experimentation</h2>
+    <table>
+        <tr><th>Assignment Type</th><td>Lab &mdash; Reinforcement Learning Experimentation</td></tr>
+        <tr><th>Topic</th><td>Deep reinforcement learning for multi-agent traffic navigation</td></tr>
+        <tr><th>Source</th><td><a href="https://www.youtube.com/watch?v=JC-bI0baVv0&t=10s" target="_blank">Lex Fridman &mdash; YouTube</a></td></tr>
+    </table>
+
+    <p>
+        The Deep Traffic Model was developed as a crowdsourced benchmark to study how deep reinforcement learning (RL)
+        methods can learn traffic navigation policies. By offering a browser-based interface, it attracted broad
+        participation from beginners to experienced practitioners. The project collected more than
+        <strong>24,000 submissions</strong>, collectively optimizing roughly <strong>572 million</strong>
+        neural-network parameters and running simulations equivalent to about <strong>96.6 years</strong> of RL
+        training time.
+    </p>
+    <p>
+        Key findings: larger networks often achieved better performance, but gains depended on balancing model capacity
+        with input dimensionality and training iterations. Temporal modeling was less decisive than many participants
+        expected, indicating that well-chosen state representations and stable training procedures can outweigh more
+        complex temporal dynamics.
+    </p>
+
+    <h2>What I Learned</h2>
+    <p>
+        Hands-on neural network experimentation taught me that theoretical expectations don&rsquo;t always match
+        empirical results. The ascending architecture&rsquo;s superior stability challenged my prior assumption that
+        funnel-shaped networks are always the better design choice. In practice, the bottleneck at the first layer of
+        the ascending model may have forced the network to learn more compressed, generalizable representations early,
+        leading to more stable long-term performance.
+    </p>
+    <p>
+        The Deep Traffic lab reinforced that crowdsourced experimentation can push performance boundaries that individual
+        efforts struggle to exceed. Sharing hyperparameters and ideas within a community accelerates learning
+        exponentially &mdash; a principle that applies far beyond machine learning.
+    </p>
+
+    <h2>Citations</h2>
+    <p>Fridman, Lex, et al. &ldquo;DeepTraffic: Crowdsourced Hyperparameter Tuning of Deep Reinforcement Learning
+    Systems for Multi-Agent Dense Traffic Navigation.&rdquo; <em>arXiv (Cornell University)</em>, Jan. 2018,
+    <a href="https://doi.org/10.48550/arxiv.1801.02805" target="_blank">https://doi.org/10.48550/arxiv.1801.02805</a>.</p>
+
+    <footer>
+        <p>&copy; 2026 Cesar Zaldivar &mdash; ITAI 1370 | Houston Community College</p>
+    </footer>
+    <button id="back-to-top" onclick="scrollToTop()">Back to Top</button>
+    <script src="script.js"></script>
+    </script>
+</body>
+</html>

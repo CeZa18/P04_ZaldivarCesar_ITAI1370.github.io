@@ -187,3 +187,38 @@ nav a:hover {
     padding-top: 16px;
     margin: 12px 0 0 0;
 }
+
+/* ── Grid Styles ── */
+.grid {
+    display: grid;
+    /* Automatically fit as many columns as possible with a minimum width of 200px */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    margin: 40px 0;
+}
+
+/* ── Project Card Styles ── */
+.project-wrapper {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    /* 1. Smooth Trnsition for Hover Effects */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.project-wrapper:hover {
+    /* 2. Subtle Lift and Shadow on Hover */
+    transform: translateY(-8px);
+
+    /* 3. Soft Shadow for Depth */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+
+    /* 4. Slightly Brighter Background on Hover */
+    background-color: #f9f9f9;
+}

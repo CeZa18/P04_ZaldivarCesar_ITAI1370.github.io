@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Module 6 — Exploring T5 | ITAI 1370 Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="site-banner">
+        <h1>ITAI 1370 &mdash; AI History, Theory &amp; Platforms</h1>
+        <p>End-of-Year Portfolio &mdash; Cesar Zaldivar | May 2026</p>
+    </div>
+    <nav class="sticky-nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="module1.html">M1</a></li>
+            <li><a href="module2.html">M2</a></li>
+            <li><a href="module3.html">M3</a></li>
+            <li><a href="module4.html">M4</a></li>
+            <li><a href="module5.html">M5</a></li>
+            <li><a href="module6.html">M6</a></li>
+            <li><a href="module7.html">M7</a></li>
+            <li><a href="module8.html">M8</a></li>
+            <li><a href="module9.html">M9</a></li>
+            <li><a href="module10.html">M10</a></li>
+            <li><a href="module11.html">M11</a></li>
+            <li><a href="module12.html">M12</a></li>
+            <li><a href="reflections.html">Reflections</a></li>
+        </ul>
+    </nav>
+
+    <h1>Module 6 &mdash; Week 6</h1>
+    <h2>Assignment A06: Exploring T5</h2>
+
+    <table>
+        <tr><th>Assignment Type</th><td>Assignment &mdash; Technical Analysis</td></tr>
+        <tr><th>Topic</th><td>Text-to-Text Transfer Transformer (T5) model and framework</td></tr>
+        <tr><th>Date Submitted</th><td>8 March 2026</td></tr>
+    </table>
+
+    <h2>What is T5?</h2>
+    <p>
+        Text-to-Text Transfer Transformer (T5) is a model and framework used to train machine learning systems to
+        perform natural language processing (NLP). In simple terms, it takes language problems and treats them as
+        <strong>text going in and text coming out</strong>, so the same general setup can be used for tasks like
+        summarizing, classifying, answering questions, and translating (Raffel et al.).
+    </p>
+
+    <img src="images/M06_T5_TextToText.png" alt="T5 text-to-text unified framework diagram" style="max-width:100%; margin: 20px 0;" />
+    <img src="images/M06_T5_Architecture.png" alt="T5 transformer architecture diagram" style="max-width:80%; margin: 20px 0; display:block;" />
+
+    <h2>Why T5 is Important</h2>
+    <ul>
+        <li><strong>Scalability:</strong> The model can be trained with a wide range of labeled data and computational resources.</li>
+        <li><strong>Efficient knowledge extraction:</strong> Uses pre-training and &ldquo;denoising&rdquo; spans of text to improve downstream tasks.</li>
+        <li><strong>C4 Dataset:</strong> Introduced the &ldquo;Colossal Clean Crawled Corpus&rdquo; (C4), a dataset consisting of hundreds of gigabytes of cleaned English text, establishing a new standard for large-scale training data.</li>
+        <li><strong>Limitations:</strong> Because it was pre-trained with English-only data, it did not achieve expected state-of-the-art results for translation tasks (Raffel et al.).</li>
+    </ul>
+
+    <h2>T5 vs. GPT-3: Key Differences</h2>
+    <table>
+        <tr>
+            <th>Feature</th>
+            <th>T5</th>
+            <th>GPT-3</th>
+        </tr>
+        <tr>
+            <td><strong>Architecture</strong></td>
+            <td>Encoder&ndash;decoder transformer</td>
+            <td>Decoder-only</td>
+        </tr>
+        <tr>
+            <td><strong>Approach</strong></td>
+            <td>Text-in, text-out with task prefixes</td>
+            <td>Prompted without explicit task prefix</td>
+        </tr>
+        <tr>
+            <td><strong>Training</strong></td>
+            <td>Pre-trained then fine-tuned for specific tasks</td>
+            <td>Broadly usable through prompting without fine-tuning</td>
+        </tr>
+        <tr>
+            <td><strong>Attention</strong></td>
+            <td>Bidirectional &mdash; looks at entire input at once</td>
+            <td>Unidirectional (left-to-right) &mdash; ideal for open-ended generation</td>
+        </tr>
+    </table>
+
+    <h2>What I Learned</h2>
+    <p>
+        T5&rsquo;s unified text-to-text approach is elegant because it standardizes how different NLP tasks are handled.
+        Instead of designing separate architectures for translation, summarization, and classification, T5 treats them
+        all as the same kind of problem with a task prefix as the only distinction.
+    </p>
+    <p>
+        Comparing T5 to GPT-3 clarified the fundamental differences between encoder-decoder and decoder-only
+        architectures. T5&rsquo;s bidirectional attention gives it a complete view of the input before generating
+        output, which is ideal for tasks where full context matters. GPT-3&rsquo;s unidirectional attention is
+        better suited for fluent, open-ended text generation. Neither is universally superior &mdash; the right
+        architecture depends on the task.
+    </p>
+
+    <h2>Citation</h2>
+    <p>Raffel, Colin, et al. &ldquo;Exploring the Limits of Transfer Learning with a Unified Text-to-Text
+    Transformer.&rdquo; <em>Journal of Machine Learning Research</em>, vol. 21, 2020, pp. 1&ndash;67,
+    <a href="http://jmlr.org/papers/v21/20-074.html" target="_blank">http://jmlr.org/papers/v21/20-074.html</a>.</p>
+
+    <footer>
+        <p>&copy; 2026 Cesar Zaldivar &mdash; ITAI 1370 | Houston Community College</p>
+    </footer>
+    <button id="back-to-top" onclick="scrollToTop()">Back to Top</button>
+<script src="script.js"></script>
+</body>
+</html>

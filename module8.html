@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Module 8 — GANs | ITAI 1370 Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="site-banner">
+        <h1>ITAI 1370 &mdash; AI History, Theory &amp; Platforms</h1>
+        <p>End-of-Year Portfolio &mdash; Cesar Zaldivar | May 2026</p>
+    </div>
+    <nav class="sticky-nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="module1.html">M1</a></li>
+            <li><a href="module2.html">M2</a></li>
+            <li><a href="module3.html">M3</a></li>
+            <li><a href="module4.html">M4</a></li>
+            <li><a href="module5.html">M5</a></li>
+            <li><a href="module6.html">M6</a></li>
+            <li><a href="module7.html">M7</a></li>
+            <li><a href="module8.html">M8</a></li>
+            <li><a href="module9.html">M9</a></li>
+            <li><a href="module10.html">M10</a></li>
+            <li><a href="module11.html">M11</a></li>
+            <li><a href="module12.html">M12</a></li>
+            <li><a href="reflections.html">Reflections</a></li>
+        </ul>
+    </nav>
+
+    <h1>Module 8 &mdash; Week 8</h1>
+    <h2>Assignment A08: Are My Stories Real or Fake? (GANs)</h2>
+
+    <table>
+        <tr><th>Assignment Type</th><td>Assignment &mdash; Creative Exercise</td></tr>
+        <tr><th>Topic</th><td>Understanding Generative Adversarial Networks through storytelling</td></tr>
+        <tr><th>Author</th><td>Cesar Zaldivar</td></tr>
+    </table>
+
+    <h2>What are GANs?</h2>
+    <p>
+        Generative Adversarial Networks (GANs) are an AI method where two models learn by competing with each other:
+        a <strong>Generator</strong> and a <strong>Discriminator</strong>. The generator&rsquo;s job is to create
+        outputs that look real. The discriminator&rsquo;s job is to look at a mix of real and generated examples
+        and decide which ones are real and which ones are fake. Each round of feedback helps both sides improve:
+        the generator learns how to make its output more convincing, and the discriminator learns how to spot
+        what seems unrealistic.
+    </p>
+
+    <img src="images/M08_GAN_Diagram.png" alt="GAN generator and discriminator feedback loop" style="max-width:100%; margin: 20px 0;" />
+
+    <h2>Methodology</h2>
+    <p>
+        For this assignment, I used personal anecdotes and wrote them in a way that could sound slightly unrealistic
+        to someone who does not know me well. This is a useful test because it highlights how hard it can be to judge
+        authenticity from text alone &mdash; sometimes reality beats fiction.
+    </p>
+    <p>To analyze the stories, I read each one as if I were the &ldquo;discriminator&rdquo; and made a real-or-fake
+    judgment based on four writing signals:</p>
+    <table>
+        <tr><th>#</th><th>Signal</th><th>Description</th></tr>
+        <tr><td>1</td><td>Sequence Realism</td><td>Whether the sequence of events felt realistic</td></tr>
+        <tr><td>2</td><td>Natural Dialogue</td><td>Whether the dialogue sounded natural and unscripted</td></tr>
+        <tr><td>3</td><td>Specific Details</td><td>Whether details were specific, consistent, and grounded</td></tr>
+        <tr><td>4</td><td>Earned Outcomes</td><td>Whether the outcome felt earned rather than too convenient</td></tr>
+    </table>
+
+    <h2>Story Sample</h2>
+    <p>
+        One of the stories described meeting my wife at a coffee shop outside my old apartment &mdash; a place that
+        always smelled like espresso and cinnamon, even before you opened the door. The story included specific
+        details like a protein smoothie routine, afternoon work calls, and noticing small habits (sticky notes, a pen
+        twirl, a quick smile to the barista) before any conversation began. These kinds of grounded, specific details
+        are precisely what a GAN discriminator &mdash; or a careful reader &mdash; uses to evaluate whether a story
+        feels real or generated.
+    </p>
+
+    <h2>What I Learned</h2>
+    <p>
+        This assignment made the abstract concept of GANs genuinely tangible. By playing the role of discriminator
+        myself, I understood firsthand what kinds of signals separate convincing output from artificial-feeling
+        content: specificity, natural flow, consistency, and earned outcomes.
+    </p>
+    <p>
+        The most surprising insight was that real stories can sometimes seem more unbelievable than fabricated ones.
+        This mirrors exactly how GAN-generated content can become indistinguishable from real data &mdash; and why
+        deepfake detection is such a hard problem. The iterative feedback loop between generator and discriminator
+        is a powerful principle that shows up everywhere: in creative writing, in scientific peer review, and in
+        how humans refine ideas through debate.
+    </p>
+
+    <footer>
+        <p>&copy; 2026 Cesar Zaldivar &mdash; ITAI 1370 | Houston Community College</p>
+    </footer>
+    <button id="back-to-top" onclick="scrollToTop()">Back to Top</button>
+    <script src="script.js"></script>
+</body>
+</html>
