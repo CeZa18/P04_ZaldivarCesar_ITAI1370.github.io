@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>César Zaldívar – About Me</title>
+
+    <!-- Tailwind CSS (utility classes) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#0f172a',
+                            800: '#1e293b',
+                            700: '#334155',
+                            600: '#475569',
+                        },
+                        teal: {
+                            50:  '#ecfeff',
+                            100: '#cffafe',
+                            200: '#a5f3fc',
+                            300: '#67e8f9',
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                            700: '#0e7490',
+                        },
+                        surface: {
+                            light: '#f8fafc',
+                            white: '#ffffff',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        };
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Portfolio custom styles — merge cesar-about.css into your style.css -->
+    <link rel="stylesheet" href="css/cesar-about.css" />
+</head>
+<body class="bg-navy-900 text-white">
+
+    <!-- ═══════════════════════════════════════════════
+         NAVIGATION
+    ═══════════════════════════════════════════════ -->
+    <header id="nav-header" class="fixed top-0 left-0 right-0 z-50 bg-navy-900/90 backdrop-blur-lg border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between h-16">
+            <a href="#hero" class="text-lg font-bold tracking-tight text-white">
+                C<span class="text-teal-500">Z</span>
+            </a>
+            <nav id="desktop-nav" class="hidden md:flex items-center gap-8">
+                <a href="#about"        class="nav-link text-sm text-slate-300 hover:text-white transition-colors">About</a>
+                <a href="#experience"   class="nav-link text-sm text-slate-300 hover:text-white transition-colors">Experience</a>
+                <a href="#competencies" class="nav-link text-sm text-slate-300 hover:text-white transition-colors">Competencies</a>
+                <a href="#tools"        class="nav-link text-sm text-slate-300 hover:text-white transition-colors">Tools</a>
+                <a href="#education"    class="nav-link text-sm text-slate-300 hover:text-white transition-colors">Education</a>
+                <a href="index.html"    class="nav-link text-sm text-slate-300 hover:text-white transition-colors">Portfolio</a>                  
+                <a href="mailto:cesar.zaldivar18@gmail.com"
+                   class="text-sm bg-teal-500 hover:bg-teal-600 text-navy-900 font-semibold px-4 py-2 rounded-lg transition-colors">
+                    Contact
+                </a>
+            </nav>
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-300 hover:text-white" aria-label="Open menu">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════
+         MOBILE MENU
+    ═══════════════════════════════════════════════ -->
+    <nav id="mobile-menu" class="hidden fixed inset-0 bg-navy-900/98 backdrop-blur-xl z-[60] flex flex-col p-6" aria-label="Mobile navigation">
+        <div class="flex justify-between items-center mb-10">
+            <span class="text-lg font-bold">C<span class="text-teal-500">Z</span></span>
+            <button id="mobile-menu-close" class="p-2 text-slate-300 hover:text-white" aria-label="Close menu">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+        </div>
+        <div class="flex flex-col gap-6">
+            <a href="#about"        class="mobile-nav-link text-xl text-slate-200 hover:text-teal-400 transition-colors">About</a>
+            <a href="#experience"   class="mobile-nav-link text-xl text-slate-200 hover:text-teal-400 transition-colors">Experience</a>
+            <a href="#competencies" class="mobile-nav-link text-xl text-slate-200 hover:text-teal-400 transition-colors">Competencies</a>
+            <a href="#tools"        class="mobile-nav-link text-xl text-slate-200 hover:text-teal-400 transition-colors">Tools</a>
+            <a href="#education"    class="mobile-nav-link text-xl text-slate-200 hover:text-teal-400 transition-colors">Education</a>
+            <a href="index.html"    class="mobile-nav-link text-xl text-slate-200 hover:text-teal-400 transition-colors">Portfolio</a>
+            <a href="mailto:cesar.zaldivar18@gmail.com"
+               class="mt-4 text-center text-lg bg-teal-500 hover:bg-teal-600 text-navy-900 font-semibold px-6 py-3 rounded-lg transition-colors">
+                Contact
+            </a>
+        </div>
+    </nav>
+
+    <main>
+
+        <!-- ═══════════════════════════════════════════════
+             HERO
+        ═══════════════════════════════════════════════ -->
+        <section id="hero" class="relative min-h-screen flex items-center justify-center hero-pattern overflow-hidden">
+            <div class="absolute inset-0 hero-grid"></div>
+
+            <!-- Decorative blobs -->
+            <div class="absolute top-20 right-10 w-72 h-72 rounded-full bg-teal-500/5 blur-3xl"></div>
+            <div class="absolute bottom-20 left-10 w-96 h-96 rounded-full bg-teal-500/3 blur-3xl"></div>
+            <div class="absolute top-1/2 left-1/4 w-2 h-2 rounded-full bg-teal-400/30 animate-pulse"></div>
+            <div class="absolute top-1/3 right-1/3 w-1.5 h-1.5 rounded-full bg-teal-300/20 animate-pulse" style="animation-delay:.5s"></div>
+            <div class="absolute bottom-1/3 right-1/4 w-2.5 h-2.5 rounded-full bg-teal-400/25 animate-pulse" style="animation-delay:1s"></div>
+
+            <div class="relative z-10 text-center px-4 md:px-8 max-w-4xl mx-auto pt-20">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-sm font-medium mb-8">
+                    <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+                    Available for opportunities
+                </div>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight text-white mb-4">
+                    César <span class="text-teal-500">Zaldívar</span>
+                </h1>
+                <p class="text-lg md:text-xl lg:text-2xl text-slate-300 font-light mb-6">
+                    Product Manager · Search &amp; eCommerce Strategist
+                </p>
+                <p class="text-base md:text-lg text-teal-400/90 font-light mb-10 h-8">
+                    <span id="typing-text" class="typing-cursor"></span>
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="https://www.linkedin.com/in/cesar-zaldivar-7b604430/"
+                       target="_blank" rel="noopener noreferrer"
+                       class="inline-flex items-center gap-3 bg-teal-500 hover:bg-teal-600 text-navy-900 font-semibold px-7 py-3.5 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-teal-500/25 min-h-[44px] w-full sm:w-auto justify-center">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        Connect on LinkedIn
+                    </a>
+                    <a href="mailto:cesar.zaldivar18@gmail.com"
+                       class="inline-flex items-center gap-3 border-2 border-teal-500/50 hover:border-teal-400 text-teal-400 hover:text-teal-300 font-semibold px-7 py-3.5 rounded-xl transition-all duration-300 hover:bg-teal-500/5 min-h-[44px] w-full sm:w-auto justify-center">
+                        <i data-lucide="mail" class="w-5 h-5"></i>
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+
+            <!-- Scroll indicator -->
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-500">
+                <span class="text-xs tracking-widest uppercase">Scroll</span>
+                <i data-lucide="chevron-down" class="w-4 h-4 animate-bounce"></i>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════
+             ABOUT ME
+        ═══════════════════════════════════════════════ -->
+        <section id="about" class="bg-white text-navy-900 py-20 md:py-28">
+            <div class="max-w-7xl mx-auto px-4 md:px-8 fade-section">
+                <div class="text-center mb-14">
+                    <p class="text-teal-600 font-semibold text-sm tracking-widest uppercase mb-3">Introduction</p>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-navy-900">About Me</h2>
+                    <div class="mt-4 mx-auto w-16 h-1 bg-teal-500 rounded-full"></div>
+                </div>
+                <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+                    <!-- Bio -->
+                    <div class="lg:w-3/5">
+                        <p class="text-base md:text-lg leading-relaxed text-slate-700">
+                            Innovative Product Manager with 25+ years of experience in eCommerce, search optimization,
+                            and omni-channel retail. Adept at leveraging data insights, AI personalization, and
+                            cross-functional collaboration to optimize product findability, increase conversion rates,
+                            and drive revenue growth.
+                        </p>
+                        <div class="mt-8 flex flex-wrap gap-3">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-teal-50 text-teal-700 text-sm font-medium">
+                                <i data-lucide="search" class="w-3.5 h-3.5"></i> Search Expert
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-teal-50 text-teal-700 text-sm font-medium">
+                                <i data-lucide="shopping-cart" class="w-3.5 h-3.5"></i> eCommerce
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-teal-50 text-teal-700 text-sm font-medium">
+                                <i data-lucide="brain" class="w-3.5 h-3.5"></i> AI &amp; Personalization
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-teal-50 text-teal-700 text-sm font-medium">
+                                <i data-lucide="bar-chart-3" class="w-3.5 h-3.5"></i> Data-Driven
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Stats -->
+                    <div class="lg:w-2/5 w-full grid gap-4">
+                        <div class="stat-glow flex items-center gap-4 p-5 rounded-2xl bg-slate-50 cursor-default">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-teal-500/10 flex items-center justify-center">
+                                <i data-lucide="calendar-range" class="w-6 h-6 text-teal-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-navy-900">25+</p>
+                                <p class="text-sm text-slate-500">Years Experience</p>
+                            </div>
+                        </div>
+                        <div class="stat-glow flex items-center gap-4 p-5 rounded-2xl bg-slate-50 cursor-default">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-teal-500/10 flex items-center justify-center">
+                                <i data-lucide="globe" class="w-6 h-6 text-teal-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-navy-900">Bilingual</p>
+                                <p class="text-sm text-slate-500">English &amp; Spanish</p>
+                            </div>
+                        </div>
+                        <div class="stat-glow flex items-center gap-4 p-5 rounded-2xl bg-slate-50 cursor-default">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-teal-500/10 flex items-center justify-center">
+                                <i data-lucide="map-pin" class="w-6 h-6 text-teal-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-navy-900">Cypress, TX</p>
+                                <p class="text-sm text-slate-500">Based in Houston Metro</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════
+             EXPERIENCE
+        ═══════════════════════════════════════════════ -->
+        <section id="experience" class="bg-surface-light py-20 md:py-28">
+            <div class="max-w-7xl mx-auto px-4 md:px-8 fade-section">
+                <div class="text-center mb-16">
+                    <p class="text-teal-600 font-semibold text-sm tracking-widest uppercase mb-3">Career Journey</p>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-navy-900">Professional Experience</h2>
+                    <div class="mt-4 mx-auto w-16 h-1 bg-teal-500 rounded-full"></div>
+                </div>
+
+                <div class="relative">
+                    <div class="timeline-line"></div>
+
+                    <!-- Advance Auto Parts -->
+                    <div class="relative pl-14 md:pl-0 mb-16 md:flex md:justify-start">
+                        <div class="timeline-dot"></div>
+                        <div class="md:w-1/2 md:pr-12 md:text-right">
+                            <div class="card-hover bg-white rounded-2xl p-6 md:p-8 shadow-sm border-l-4 border-teal-500">
+                                <div class="flex flex-col md:items-end">
+                                    <h3 class="text-xl md:text-2xl font-bold text-teal-600 mb-1">Advance Auto Parts</h3>
+                                    <p class="text-base font-semibold text-navy-900">Product Manager – Search</p>
+                                    <p class="text-sm text-slate-500 mb-4 flex items-center gap-1.5 md:justify-end">
+                                        <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Houston, TX · Mar 2023 – Present
+                                    </p>
+                                </div>
+                                <ul class="text-sm text-slate-600 space-y-2 md:text-right list-none">
+                                    <li>Define vision, strategy, and roadmap for search and discovery across omni-channel platforms (POS, B2B, eCommerce)</li>
+                                    <li>Design innovative search experiences beyond traditional aftermarket automotive practices</li>
+                                    <li>Evaluate market-leading search technologies and implement optimal solutions</li>
+                                    <li>Leverage 20+ years of expertise to improve search relevance, usability, and conversion</li>
+                                    <li>Enhanced product findability, increasing customer engagement and simplifying purchase paths</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Academy Sports + Outdoors -->
+                    <div class="relative pl-14 md:pl-0 mb-16 md:flex md:justify-end">
+                        <div class="timeline-dot"></div>
+                        <div class="md:w-1/2 md:pl-12">
+                            <div class="card-hover bg-white rounded-2xl p-6 md:p-8 shadow-sm border-l-4 border-teal-500">
+                                <h3 class="text-xl md:text-2xl font-bold text-teal-600 mb-1">Academy Sports + Outdoors</h3>
+                                <p class="text-base font-semibold text-navy-900">Manager, Site Optimization &amp; Search Architecture</p>
+                                <p class="text-sm text-slate-500 mb-4 flex items-center gap-1.5">
+                                    <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Katy, TX · Nov 2021 – Mar 2023
+                                </p>
+                                <ul class="text-sm text-slate-600 space-y-2 list-none">
+                                    <li>Owned strategy for onsite search optimization, AI personalization, and A/B testing</li>
+                                    <li>Developed attribute-based navigation and implemented product data governance</li>
+                                    <li>Created dashboards to track search KPIs; delivered monthly performance insights to leadership</li>
+                                    <li>Benchmarked search experience against competitors and translated insights into improvements</li>
+                                    <li>Improved search relevance and navigation led to measurable gains in conversion of 2.5% and order value</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AutoZone Sr. -->
+                    <div class="relative pl-14 md:pl-0 mb-16 md:flex md:justify-start">
+                        <div class="timeline-dot"></div>
+                        <div class="md:w-1/2 md:pr-12 md:text-right">
+                            <div class="card-hover bg-white rounded-2xl p-6 md:p-8 shadow-sm border-l-4 border-teal-500">
+                                <div class="flex flex-col md:items-end">
+                                    <h3 class="text-xl md:text-2xl font-bold text-teal-600 mb-1">AutoZone</h3>
+                                    <p class="text-base font-semibold text-navy-900">Digital Experience Product Owner Sr.</p>
+                                    <p class="text-sm text-slate-500 mb-4 flex items-center gap-1.5 md:justify-end">
+                                        <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Memphis, TN · Oct 2014 – Nov 2021
+                                    </p>
+                                </div>
+                                <ul class="text-sm text-slate-600 space-y-2 md:text-right list-none">
+                                    <li>Wrote user stories, requirements, and acceptance criteria for catalog, search, promotions, and checkout</li>
+                                    <li>Led Agile teams to deliver enhancements for B2C and B2B commerce channels</li>
+                                    <li>Collaborated with marketing, merchandising, and IT to launch impactful features</li>
+                                    <li>Delivered "Shop by Vehicle," generating billions in revenue and positioning AutoZone as the top Automotive Aftermarket Parts DIY website with strong SEO practices</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AutoZone Catalog Leader -->
+                    <div class="relative pl-14 md:pl-0 mb-4 md:flex md:justify-end">
+                        <div class="timeline-dot"></div>
+                        <div class="md:w-1/2 md:pl-12">
+                            <div class="card-hover bg-white rounded-2xl p-6 md:p-8 shadow-sm border-l-4 border-teal-500">
+                                <h3 class="text-xl md:text-2xl font-bold text-teal-600 mb-1">AutoZone</h3>
+                                <p class="text-base font-semibold text-navy-900">Ecommerce Catalog Team Leader</p>
+                                <p class="text-sm text-slate-500 mb-4 flex items-center gap-1.5">
+                                    <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Chihuahua, MX · Oct 2005 – Oct 2014
+                                </p>
+                                <ul class="text-sm text-slate-600 space-y-2 list-none">
+                                    <li>Managed a team of 10–16, creating and maintaining online product content</li>
+                                    <li>Standardized catalog best practices and trained internal and vendor teams</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════
+             CORE COMPETENCIES
+        ═══════════════════════════════════════════════ -->
+        <section id="competencies" class="bg-white py-20 md:py-28">
+            <div class="max-w-7xl mx-auto px-4 md:px-8 fade-section">
+                <div class="text-center mb-14">
+                    <p class="text-teal-600 font-semibold text-sm tracking-widest uppercase mb-3">Expertise</p>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-navy-900">Core Competencies</h2>
+                    <div class="mt-4 mx-auto w-16 h-1 bg-teal-500 rounded-full"></div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div class="card-hover bg-slate-50 rounded-2xl p-6 flex items-start gap-4">
+                        <div class="flex-shrink-0 w-11 h-11 rounded-xl bg-teal-500/10 flex items-center justify-center">
+                            <i data-lucide="route" class="w-5 h-5 text-teal-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-navy-900 mb-1">Product Management &amp; Roadmapping</h3>
+                            <p class="text-sm text-slate-500">Vision-driven strategy and execution</p>
+                        </div>
+                    </div>
+                    <div class="card-hover bg-slate-50 rounded-2xl p-6 flex items-start gap-4">
+                        <div class="flex-shrink-0 w-11 h-11 rounded-xl bg-teal-500/10 flex items-center justify-center">
+                            <i data-lucide="search" class="w-5 h-5 text-teal-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-navy-900 mb-1">Search &amp; Discovery Optimization</h3>
+                            <p class="text-sm text-slate-500">SEO, AI &amp; Personalization</p>
+                        </div>
+                    </div>
+                    <div class="card-hover bg-slate-50 rounded-2xl p-6 flex items-start gap-4">
+                        <div class="flex-shrink-0 w-11 h-11 rounded-xl bg-teal-500/10 flex items-center justify-center">
+                            <i data-lucide="zap" class="w-5 h-5 text-teal-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-navy-900 mb-1">Agile/Scrum Leadership</h3>
+                            <p class="text-sm text-slate-500">Stakeholder Management</p>
+                        </div>
+                    </div>
+                    <div class="card-hover bg-slate-50 rounded-2xl p-6 flex items-start gap-4">
+                        <div class="flex-shrink-0 w-11 h-11 rounded-xl bg-teal-500/10 flex items-center justify-center">
+                            <i data-lucide="bar-chart-3" class="w-5 h-5 text-teal-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-navy-900 mb-1">Data Analysis &amp; Metrics</h3>
+                            <p class="text-sm text-slate-500">KPI Development &amp; Insights</p>
+                        </div>
+                    </div>
+                    <div class="card-hover bg-slate-50 rounded-2xl p-6 flex items-start gap-4">
+                        <div class="flex-shrink-0 w-11 h-11 rounded-xl bg-teal-500/10 flex items-center justify-center">
+                            <i data-lucide="shopping-cart" class="w-5 h-5 text-teal-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-navy-900 mb-1">Omni-channel eCommerce</h3>
+                            <p class="text-sm text-slate-500">B2B/B2C Strategy</p>
+                        </div>
+                    </div>
+                    <div class="card-hover bg-slate-50 rounded-2xl p-6 flex items-start gap-4">
+                        <div class="flex-shrink-0 w-11 h-11 rounded-xl bg-teal-500/10 flex items-center justify-center">
+                            <i data-lucide="database" class="w-5 h-5 text-teal-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-navy-900 mb-1">Catalog Management</h3>
+                            <p class="text-sm text-slate-500">Data Governance &amp; Quality</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════
+             TOOLS & TECH
+        ═══════════════════════════════════════════════ -->
+        <section id="tools" class="bg-surface-light py-20 md:py-28">
+            <div class="max-w-7xl mx-auto px-4 md:px-8 fade-section">
+                <div class="text-center mb-14">
+                    <p class="text-teal-600 font-semibold text-sm tracking-widest uppercase mb-3">Tech Stack</p>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-navy-900">Tools &amp; Technologies</h2>
+                    <div class="mt-4 mx-auto w-16 h-1 bg-teal-500 rounded-full"></div>
+                </div>
+                <div class="flex flex-wrap justify-center gap-3 md:gap-4 max-w-3xl mx-auto">
+                    <span class="pill-badge px-5 py-2.5 rounded-full bg-navy-900 text-teal-400 font-medium text-sm border border-navy-700 cursor-default">SQL</span>
+                    <span class="pill-badge px-5 py-2.5 rounded-full bg-navy-900 text-teal-400 font-medium text-sm border border-navy-700 cursor-default">Solr</span>
+                    <span class="pill-badge px-5 py-2.5 rounded-full bg-navy-900 text-teal-400 font-medium text-sm border border-navy-700 cursor-default">Endeca</span>
+                    <span class="pill-badge px-5 py-2.5 rounded-full bg-navy-900 text-teal-400 font-medium text-sm border border-navy-700 cursor-default">Google Vertex AI</span>
+                    <span class="pill-badge px-5 py-2.5 rounded-full bg-navy-900 text-teal-400 font-medium text-sm border border-navy-700 cursor-default">Adobe Analytics</span>
+                    <span class="pill-badge px-5 py-2.5 rounded-full bg-navy-900 text-teal-400 font-medium text-sm border border-navy-700 cursor-default">Data Studio</span>
+                    <span class="pill-badge px-5 py-2.5 rounded-full bg-navy-900 text-teal-400 font-medium text-sm border border-navy-700 cursor-default">Oracle ATG</span>
+                    <span class="pill-badge px-5 py-2.5 rounded-full bg-navy-900 text-teal-400 font-medium text-sm border border-navy-700 cursor-default">JIRA</span>
+                    <span class="pill-badge px-5 py-2.5 rounded-full bg-navy-900 text-teal-400 font-medium text-sm border border-navy-700 cursor-default">Python</span>
+                    <span class="pill-badge px-5 py-2.5 rounded-full bg-navy-900 text-teal-400 font-medium text-sm border border-navy-700 cursor-default">GitHub</span>
+                    <span class="pill-badge px-5 py-2.5 rounded-full bg-navy-900 text-teal-400 font-medium text-sm border border-navy-700 cursor-default">Confluence</span>
+                    <span class="pill-badge px-5 py-2.5 rounded-full bg-navy-900 text-teal-400 font-medium text-sm border border-navy-700 cursor-default">Microsoft Azure</span>
+                    <span class="pill-badge px-5 py-2.5 rounded-full bg-navy-900 text-teal-400 font-medium text-sm border border-navy-700 cursor-default">Google Cloud Platform</span>
+                    <span class="pill-badge px-5 py-2.5 rounded-full bg-navy-900 text-teal-400 font-medium text-sm border border-navy-700 cursor-default">Visual Studio</span>
+                    <span class="pill-badge px-5 py-2.5 rounded-full bg-navy-900 text-teal-400 font-medium text-sm border border-navy-700 cursor-default">AWS</span>
+                    <span class="pill-badge px-5 py-2.5 rounded-full bg-navy-900 text-teal-400 font-medium text-sm border border-navy-700 cursor-default">Linux</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════
+             EDUCATION
+        ═══════════════════════════════════════════════ -->
+        <section id="education" class="bg-white py-20 md:py-28">
+            <div class="max-w-7xl mx-auto px-4 md:px-8 fade-section">
+                <div class="text-center mb-14">
+                    <p class="text-teal-600 font-semibold text-sm tracking-widest uppercase mb-3">Learning</p>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-navy-900">Education</h2>
+                    <div class="mt-4 mx-auto w-16 h-1 bg-teal-500 rounded-full"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- HCC -->
+                    <div class="card-hover bg-slate-50 rounded-2xl p-6 md:p-8 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-500 to-teal-300"></div>
+                        <div class="flex items-center gap-3 mb-4 mt-2">
+                            <div class="w-10 h-10 rounded-xl bg-teal-500/10 flex items-center justify-center">
+                                <i data-lucide="graduation-cap" class="w-5 h-5 text-teal-600"></i>
+                            </div>
+                            <span class="text-xs font-semibold text-teal-600 bg-teal-50 px-2.5 py-1 rounded-full">In Progress</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-navy-900 mb-1">Houston Community College</h3>
+                        <p class="text-sm font-medium text-slate-700 mb-2">Artificial Intelligence &amp; Robotics, B.A.T.</p>
+                        <p class="text-sm text-slate-500 flex items-center gap-1.5">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Houston, TX
+                        </p>
+                        <p class="text-sm text-slate-500 flex items-center gap-1.5 mt-1">
+                            <i data-lucide="calendar" class="w-3.5 h-3.5"></i> Expected Dec 2028
+                        </p>
+                    </div>
+                    <!-- UTEP -->
+                    <div class="card-hover bg-slate-50 rounded-2xl p-6 md:p-8 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-500 to-teal-300"></div>
+                        <div class="flex items-center gap-3 mb-4 mt-2">
+                            <div class="w-10 h-10 rounded-xl bg-teal-500/10 flex items-center justify-center">
+                                <i data-lucide="graduation-cap" class="w-5 h-5 text-teal-600"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-navy-900 mb-1">University of Texas, El Paso</h3>
+                        <p class="text-sm font-medium text-slate-700 mb-2">B.S. Mechanical Engineering</p>
+                        <p class="text-sm text-slate-500 flex items-center gap-1.5">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> El Paso, TX
+                        </p>
+                        <p class="text-sm text-slate-500 flex items-center gap-1.5 mt-1">
+                            <i data-lucide="calendar" class="w-3.5 h-3.5"></i> Aug 2000 – Dec 2002
+                        </p>
+                    </div>
+                    <!-- ITCH -->
+                    <div class="card-hover bg-slate-50 rounded-2xl p-6 md:p-8 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-500 to-teal-300"></div>
+                        <div class="flex items-center gap-3 mb-4 mt-2">
+                            <div class="w-10 h-10 rounded-xl bg-teal-500/10 flex items-center justify-center">
+                                <i data-lucide="graduation-cap" class="w-5 h-5 text-teal-600"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-navy-900 mb-1">ITCH</h3>
+                        <p class="text-sm font-medium text-slate-700 mb-2">Mechanical Engineering</p>
+                        <p class="text-sm text-slate-500 flex items-center gap-1.5">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Chihuahua, MX
+                        </p>
+                        <p class="text-sm text-slate-500 flex items-center gap-1.5 mt-1">
+                            <i data-lucide="calendar" class="w-3.5 h-3.5"></i> Aug 1998 – May 2000
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════════════════════════════════════════════
+         FOOTER
+    ═══════════════════════════════════════════════ -->
+    <footer id="site-footer" class="bg-navy-900 border-t border-white/5 py-12 md:py-16">
+        <div class="max-w-7xl mx-auto px-4 md:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="text-center md:text-left">
+                    <h3 class="text-xl font-bold text-white mb-1">César <span class="text-teal-500">Zaldívar</span></h3>
+                    <p class="text-sm text-slate-400">Product Manager · Search &amp; eCommerce Strategist</p>
+                </div>
+                <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+                    <a href="https://www.linkedin.com/in/cesar-zaldivar-7b604430/"
+                       target="_blank" rel="noopener noreferrer"
+                       class="inline-flex items-center gap-2 text-slate-400 hover:text-teal-400 transition-colors">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                    <a href="mailto:cesar.zaldivar18@gmail.com"
+                       class="inline-flex items-center gap-2 text-slate-400 hover:text-teal-400 transition-colors">
+                        <i data-lucide="mail" class="w-5 h-5"></i>
+                        cesar.zaldivar18@gmail.com
+                    </a>
+                    <a href="tel:9018965543"
+                       class="inline-flex items-center gap-2 text-slate-400 hover:text-teal-400 transition-colors">
+                        <i data-lucide="phone" class="w-5 h-5"></i>
+                        (901) 896-5543
+                    </a>
+                </div>
+            </div>
+            <div class="mt-10 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
+                <p>&copy; 2026 César Zaldívar. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════════════
+         SCRIPTS
+    ═══════════════════════════════════════════════ -->
+    <script>
+        // Init Lucide icons
+        lucide.createIcons();
+
+        // ── Mobile menu ──────────────────────────────────
+        const mobileMenuBtn   = document.getElementById('mobile-menu-btn');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenu      = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            mobileMenu.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        });
+
+        mobileMenuClose.addEventListener('click', closeMenu);
+        document.querySelectorAll('.mobile-nav-link').forEach(l => l.addEventListener('click', closeMenu));
+
+        function closeMenu() {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        // ── Typing animation ─────────────────────────────
+        (function () {
+            const text = '25+ years turning search complexity into seamless customer experiences.';
+            const el   = document.getElementById('typing-text');
+            let i = 0;
+            function type() {
+                if (i < text.length) { el.textContent += text[i++]; setTimeout(type, 35); }
+            }
+            setTimeout(type, 800);
+        })();
+
+        // ── IntersectionObserver fade-in ─────────────────
+        (function () {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+            document.querySelectorAll('.fade-section').forEach(s => observer.observe(s));
+        })();
+
+        // ── Active nav link on scroll ─────────────────────
+        (function () {
+            const navLinks  = document.querySelectorAll('#desktop-nav a[href^="#"]');
+            const sectionIds = [...navLinks].map(l => l.getAttribute('href').slice(1));
+
+            window.addEventListener('scroll', () => {
+                const scrollPos = window.scrollY + 120;
+                let current = '';
+                sectionIds.forEach(id => {
+                    const s = document.getElementById(id);
+                    if (s && s.offsetTop <= scrollPos) current = id;
+                });
+                navLinks.forEach(l => {
+                    const isActive = l.getAttribute('href') === '#' + current;
+                    l.classList.toggle('text-teal-400', isActive);
+                    l.classList.toggle('text-slate-300', !isActive);
+                });
+            });
+        })();
+    </script>
+
+</body>
+</html>
