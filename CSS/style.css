@@ -52,44 +52,115 @@ body {
             font-size: 0.9em;
         }
 
-/* Navigation Bar Styles */
+/* ── Navigation Bar ─────────────────────────────────────────
+   Replaces: nav, .sticky-nav, nav ul, nav li, nav a, nav a:hover
+   ──────────────────────────────────────────────────────────── */
 nav {
-    background-color: #1a4d8f;
-    position: sticky; /* Makes the navbar stick to the top */
-    top: 0; /* Position it at the top of the viewport */
-    width: 100%; /* Full width */
-    z-index: 1000; /* Ensure it stays above other content */
-    padding: 10px 0;
-    margin-bottom: 30px;
-}
-
-.sticky-nav {
+    background-color: #1a4d8f;        /* ← your original blue, kept */
     position: sticky;
     top: 0;
+    width: 100%;
     z-index: 1000;
+    padding: 10px 0;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
-nav ul {
+/* ── Nav list — horizontal centered row ─────────────────── */
+nav ul,
+.nav-list {
     list-style: none;
     display: flex;
-    justify-content: center;
+    justify-content: center;          /* ← your original centered layout */
+    align-items: center;
     padding: 0;
     margin: 0;
 }
 
-nav li {
-    margin: 0 15px;
+/* ── Each nav item — needs relative for dropdown anchor ─── */
+nav li,
+.nav-item {
+    position: relative;               /* ← required for dropdown positioning */
+    margin: 0 15px;                   /* ← your original spacing */
 }
 
-nav a {
-    color: white;
+/* ── Nav links ──────────────────────────────────────────── */
+nav a,
+.nav-link {
+    color: white;                     /* ← your original white */
     text-decoration: none;
-    font-weight: bold;
+    font-weight: bold;                /* ← your original bold */
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 0;
+    transition: color 0.2s ease;
 }
 
-nav a:hover {
-    text-decoration: underline;
+nav a:hover,
+.nav-link:hover {
+    text-decoration: underline;       /* ← your original underline hover */
 }
+
+/* ── Dropdown arrow indicator ───────────────────────────── */
+.dropdown-arrow {
+    font-size: 0.65rem;
+    transition: transform 0.2s ease;
+}
+
+.has-dropdown:hover .dropdown-arrow {
+    transform: rotate(180deg);        /* ← flips up when menu opens */
+}
+
+/* ── Dropdown menu panel ────────────────────────────────── */
+.dropdown {
+    display: none;                    /* hidden until hover */
+    position: absolute;
+    top: 100%;                        /* drops directly below parent */
+    left: 50%;
+    transform: translateX(-50%);      /* centers under parent link */
+    min-width: 190px;
+    background-color: #163d72;        /* ← darker shade of your blue */
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    list-style: none;
+    padding: 6px 0;
+    margin: 0;
+    z-index: 1100;
+}
+
+/* ── Dropdown items ─────────────────────────────────────── */
+.dropdown li {
+    margin: 0;                        /* override the 0 15px from nav li */
+}
+
+.dropdown li a {
+    display: block;
+    padding: 8px 18px;
+    font-weight: normal;              /* lighter than top-level links */
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-decoration: none;           /* clean highlight instead of underline */
+}
+
+/* ── Divider line (above Reflections in School menu) ────── */
+.dropdown-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    margin: 5px 0;
+}
+
+/* ── Show dropdown on hover ─────────────────────────────── */
+.has-dropdown:hover .dropdown {
+    display: block;
+}
+
 
 #back-to-top {
     position: fixed;

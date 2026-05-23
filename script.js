@@ -1,26 +1,27 @@
+
+// Fetch and insert the navigation bar from nav.html
 fetch("nav.html")
     .then(response => response.text())
     .then(data => {
         document.getElementById("nav-placeholder").innerHTML = data;
+
+        // Get the navbar element existing in the DOM after it's been inserted
+        const navBar = document.getElementById("nav-placeholder");
+        // Get the offset position of the navbar
+        const stickyOffset = navBar.offsetTop;
+
+        window.addEventListener("scroll", function() {
+            if (window.pageYOffset >= stickyOffset) {
+                navBar.classList.add("sticky");
+            } else {
+                navBar.classList.remove("sticky");
+            }
+        });
+
     })
     .catch(error => console.error("Error loading navigation:", error));
 
-// Get the navbar element
-const navBar = document.getElementById("nav-placeholder");
-// Get the offset position of the navbar
-const stickyOffset = navBar.offsetTop;
 
-function stickyNav() {
-    // Check if the page has been scrolled past the navbar's offset
-    if (window.pageYOffset >= stickyOffset) {
-        navBar.classList.add("sticky-nav"); // add the sticky class to the navbar
-    } else {
-        navBar.classList.remove("sticky-nav"); // remove the sticky class from the navbar
-    }
-}
-
-// listener for scroll event to trigger stickyNav function
-window.addEventListener("scroll", stickyNav);
 
 // Back to Top Button Functionality
 let backToTopButton = document.getElementById("back-to-top");
