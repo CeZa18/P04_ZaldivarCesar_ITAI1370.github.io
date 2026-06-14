@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rock-Paper-Scissors-Lizard-Spock</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<header class="site-banner">
+    <h1>My Path to Artificial Intelligence</h1>
+    <p>By Cesar Zaldivar</p>
+</header>
+<body>
+<div id="nav-placeholder"></div>
+    <h1>Rock-Paper-Scissors-Lizard-Spock</h1>
+    
+    <section>
+        <p>
+            Rock-Paper-Scissors-Lizard-Spock is a variant of the classic Rock-Paper-Scissors game, adding two more elements: Lizard and Spock. Each element has specific rules for winning against others.
+        </p>
+        <p>
+            This game is a fun way to explore decision-making and probability, and it can be used to demonstrate concepts in artificial intelligence, such as strategy and prediction. But mostly I coded this to learn programming. I started with Python, but I wanted to learn JavaScript and HTML/CSS, so I decided to code this game in JavaScript. The game is played against the computer, which makes random choices. The player selects their choice, and the game determines the winner based on the rules of Rock-Paper-Scissors-Lizard-Spock.   
+        </p>
+    </section> 
+    
+    <section>
+        <h2>How to Play</h2>
+        <ol>
+            <li>Both players choose their moves simultaneously.</li>
+            <li>The game determines the winner based on the rules of Rock-Paper-Scissors-Lizard-Spock.</li>
+            <li>Players can choose from the following options: Rock, Paper, Scissors, Lizard, or Spock.</li>
+            <li>The player with the winning move gets a point.</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>Game Board</h2>
+        <div id="game-board">
+        <script src="RPSLS.js"></script>
+            <!-- The game board will be generated here by the JavaScript code -->
+        </div>       
+    </section>
+
+    <button onclick="resetGame()">Reset Game</button>
+    <button id="back-to-top" onclick="scrollToTop()">Back to Top</button>
+<script src="script.js"></script>
+</body>
+</html>
