@@ -293,3 +293,88 @@ nav a:hover,
     /* 4. Slightly Brighter Background on Hover */
     background-color: #f9f9f9;
 }
+
+/* ── Level 3: Flyout Sub-dropdown ──────────────────────────
+   Appears to the RIGHT when hovering a Level 2 class item
+   ─────────────────────────────────────────────────────────── */
+
+/* L2 item that has a L3 child — needs relative for flyout anchor */
+.dropdown .has-subdropdown {
+    position: relative;
+}
+
+/* L2 trigger link — arrow indicates flyout direction */
+.subdropdown-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 8px 18px;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;             /* slightly bolder to show it's a parent */
+    transition: background-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+}
+
+.subdropdown-trigger:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-decoration: none;
+}
+
+/* Right-facing arrow indicator */
+.subdropdown-arrow {
+    font-size: 0.6rem;
+    margin-left: 8px;
+    transition: transform 0.2s ease;
+}
+
+/* L3 flyout panel — hidden by default, opens to the RIGHT */
+.subdropdown {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;                   /* ← flies out to the right */
+    min-width: 160px;
+    background-color: #122d5e;    /* ← one shade darker than L2 panel */
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 6px;
+    box-shadow: 4px 6px 20px rgba(0, 0, 0, 0.4);
+    list-style: none;
+    padding: 6px 0;
+    margin: 0;
+    z-index: 1200;
+}
+
+/* L3 items */
+.subdropdown li {
+    margin: 0;
+}
+
+.subdropdown li a {
+    display: block;
+    padding: 7px 18px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: normal;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.subdropdown li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-decoration: none;
+}
+
+/* Show L3 on L2 hover */
+.dropdown .has-subdropdown:hover .subdropdown {
+    display: block;
+}
+
+/* Rotate L2 arrow when L3 is open */
+.dropdown .has-subdropdown:hover .subdropdown-arrow {
+    transform: rotate(90deg);
+}

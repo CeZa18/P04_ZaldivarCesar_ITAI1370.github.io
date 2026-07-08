@@ -1,155 +1,900 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>ITAI1370 - Intro to AI</title>
-    <link rel="stylesheet" href="css/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<header class="site-banner">
-    <h1>ITAI1370 - Artificial Intelligence History</h1>
-    <p>By Cesar Zaldivar</p>
-</header>
-<body>
-<div id="nav-placeholder"></div>
-    <h1 style="text-align: center;">Introduction to Artificial Intelligence</h1>
-    <h2 style="text-align: center;">Final Project</h2>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <title>School Hub - Lab Cards</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: '#1a4d8f',
+              'brand-hover': '#2563eb',
+              'page-bg': '#0f172a',
+              'card-bg': '#1e293b',
+              'card-border': 'rgba(255,255,255,0.07)',
+              'card-border-hover': 'rgba(26,77,143,0.5)',
+              'text-primary': '#ffffff',
+              'text-secondary': '#94a3b8',
+              'text-muted': '#64748b',
+              'status-complete-bg': '#14532d',
+              'status-complete-text': '#22c55e',
+              'status-progress-bg': 'rgba(26,77,143,0.3)',
+              'status-progress-text': '#60a5fa',
+              'status-soon-bg': '#334155',
+              'status-soon-text': '#94a3b8',
+              'colab-orange': '#F9AB00',
+              'github-dark': '#24292e',
+              'gold-border': '#d97706',
+              'gold-bg': '#78350f',
+            },
+          },
+        },
+      };
+    </script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <style>
+      :root {
+        --brand: #1a4d8f;
+        --brand-hover: #2563eb;
+        --page-bg: #0f172a;
+        --card-bg: #1e293b;
+        --card-border: rgba(255,255,255,0.07);
+        --card-border-hover: rgba(26,77,143,0.5);
+        --text-primary: #ffffff;
+        --text-secondary: #94a3b8;
+        --colab: #F9AB00;
+        --github: #24292e;
+        --gold: #d97706;
+        --gold-bg: #78350f;
+      }
 
-<section id="intro">
+      html { scroll-behavior: smooth; }
 
-    <blockquote>
-        <p>
-            Carl Sagan once warned that when almost no one understands science and
-            technology, we create &#8220;a combustible mixture of ignorance and
-            power&#8221; &mdash; a prescription for disaster. That warning feels
-            more urgent than ever in the age of artificial intelligence.
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--page-bg);
+        color: var(--text-secondary);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        min-height: 100vh;
+      }
+
+      /* Hero dot pattern */
+      .hero-pattern {
+        background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+        background-size: 24px 24px;
+      }
+
+      /* Card hover */
+      .lab-card {
+        transition: all 0.2s ease;
+        border: 1px solid var(--card-border);
+      }
+      .lab-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--card-border-hover);
+        box-shadow: 0 8px 30px rgba(26,77,143,0.2), 0 4px 12px rgba(0,0,0,0.3);
+      }
+      .lab-card.coming-soon-card:hover {
+        transform: none;
+        border-color: var(--card-border);
+        box-shadow: none;
+        cursor: default;
+      }
+      .lab-card.clickable-card {
+        cursor: pointer;
+      }
+
+      /* Gold reflections card */
+      .gold-card {
+        border-color: var(--gold) !important;
+        background: linear-gradient(135deg, rgba(120,53,15,0.3) 0%, var(--card-bg) 60%) !important;
+      }
+      .gold-card:hover {
+        border-color: #f59e0b !important;
+        box-shadow: 0 8px 30px rgba(217,119,6,0.2), 0 4px 12px rgba(0,0,0,0.3) !important;
+      }
+
+      /* Pulse animation for in-progress */
+      @keyframes pulse-dot {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.4; }
+      }
+      .pulse-dot {
+        animation: pulse-dot 2s ease-in-out infinite;
+      }
+
+      /* Green active dot */
+      @keyframes pulse-green {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.5; transform: scale(0.85); }
+      }
+      .pulse-green {
+        animation: pulse-green 2s ease-in-out infinite;
+      }
+
+      /* Progress bar animation */
+      .progress-fill {
+        transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      /* Tag colors */
+      .tag-blue { background: rgba(26,77,143,0.25); color: #60a5fa; }
+      .tag-purple { background: rgba(124,58,237,0.2); color: #a78bfa; }
+      .tag-teal { background: rgba(20,184,166,0.2); color: #2dd4bf; }
+      .tag-gold { background: rgba(217,119,6,0.2); color: #fbbf24; }
+
+      /* Tooltip */
+      .tooltip-wrapper {
+        position: relative;
+      }
+      .tooltip-wrapper .tooltip-text {
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        bottom: calc(100% + 8px);
+        left: 50%;
+        transform: translateX(-50%);
+        background: #334155;
+        color: #e2e8f0;
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        white-space: nowrap;
+        transition: opacity 0.15s ease, visibility 0.15s ease;
+        z-index: 50;
+        pointer-events: none;
+      }
+      .tooltip-wrapper .tooltip-text::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 5px;
+        border-style: solid;
+        border-color: #334155 transparent transparent transparent;
+      }
+      .tooltip-wrapper:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      /* Title truncation */
+      .card-title {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      /* Section divider */
+      .section-divider {
+        border: none;
+        height: 1px;
+        background: linear-gradient(90deg, transparent 0%, rgba(26,77,143,0.4) 50%, transparent 100%);
+      }
+
+      /* Buttons disabled */
+      .btn-disabled {
+        opacity: 0.4;
+        cursor: not-allowed !important;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body data-id="0" class="antialiased">
+    
+
+    <!-- Nav Placeholder -->
+    <div data-id="2" id="nav-placeholder"></div>
+
+    <!-- ============ HERO SECTION ============ -->
+    <section data-id="3" id="hero-section-a1b2" class="hero-pattern relative overflow-hidden" style="background:#0f172a;">
+      <div data-id="4" class="max-w-[1200px] mx-auto px-6 py-16 md:py-24 text-center relative z-10">
+        <span data-id="5" id="hero-badge-c3d4" class="inline-block px-4 py-1.5 rounded-full text-sm font-semibold mb-6" style="background:rgba(26,77,143,0.2); color:#60a5fa;">
+          My Coursework
+        </span>
+        <h1 data-id="6" id="hero-title-e5f6" class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
+          School
+        </h1>
+        <p data-id="7" id="hero-subtitle-g7h8" class="text-lg md:text-xl text-text-secondary max-w-xl mx-auto mb-8">
+          AI &amp; Machine Learning courses at Houston Community College
         </p>
-        <footer>
-            &mdash; Sagan, Carl. <em>The Demon-Haunted World.</em> Random House, 1995.
-        </footer>
-    </blockquote>
-
-    <p>
-        Artificial intelligence is no longer a distant concept from science
-        fiction &mdash; it is the technology shaping how we work, create, and
-        make decisions every day. This portfolio documents my semester-long study
-        of AI&#8217;s history and platforms at Houston Community College, tracing
-        its roots from a single summer workshop at Dartmouth in 1956 to the
-        large-scale models and real-time systems that define the field today.
-    </p>
-
-    <p>
-        Each module represents a different lens: historical context, hands-on
-        experimentation, critical analysis, and creative application. Whether you
-        are a fellow student, a curious visitor, or a future employer, I invite
-        you to explore the work and the thinking behind it.
-    </p>
-
-    <p class="intro-byline">
-        <strong>Cesar Zaldivar</strong> &nbsp;|&nbsp;
-        ITAI 1370 &mdash; AI History, Theory &amp; Platforms &nbsp;|&nbsp;
-        Professor Maryam Esmali &nbsp;|&nbsp; May 2026
-    </p>
-
-</section>
-
-<!-- Container to keep the portfolio items aligned -->
-<section class="container">
-
-    <h2>Portfolio Modules</h2>
-
-    <div class="grid">
-
-        <!-- Wrapper to enclose each project card -->
-        <div class="project-wrapper">
-            <h3>Module 1: Trinity of AI</h3>
-            <p>The three pillars that power every AI breakthrough: Data, Algorithms, and Compute.</p>
-            <a href="module1.html" class="button">View Page</a>
+        <div data-id="8" id="hero-stats-i9j0" class="flex items-center justify-center gap-4 flex-wrap">
+          <span data-id="9" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium" style="background:rgba(26,77,143,0.15); color:#93c5fd;">
+            <i data-id="10" data-lucide="book-open" class="w-4 h-4"></i>
+            2 Courses
+          </span>
+          <span data-id="11" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium" style="background:rgba(20,83,45,0.25); color:#86efac;">
+            <span data-id="12" class="w-2 h-2 rounded-full bg-green-400 pulse-green inline-block"></span>
+            Active Student
+          </span>
         </div>
+      </div>
+      <!-- Subtle gradient overlay at bottom -->
+      <div data-id="13" class="absolute bottom-0 left-0 right-0 h-24" style="background: linear-gradient(to top, #0f172a, transparent);"></div>
+    </section>
 
-        <div class="project-wrapper">
-            <h3>Module 2: The Dartmouth Proposal</h3>
-            <p>Where it all began — the 1956 summer workshop that gave AI its name.</p>
-            <a href="module2.html" class="button">View Project</a>
-        </div>
+    <main data-id="14" class="relative z-10">
 
-        <div class="project-wrapper">
-            <h3>Module 3: AlphaGo Zero</h3>
-            <p>How a machine taught itself to play Go better than any human — with no human input.</p>
-            <a href="module3.html" class="button">View Project</a>
-        </div>
+      <!-- ============ ITAI-1370 SECTION ============ -->
+      <section data-id="15" id="section-1370-k1l2" class="py-12 md:py-16">
+        <div data-id="16" class="max-w-[1200px] mx-auto px-6">
 
-        <div class="project-wrapper">
-            <h3>Module 4: Raytracing & QR Codes</h3>
-            <p>How light becomes art, and how a grid of squares changed the way we share information.</p>
-            <a href="module4.html" class="button">View Analysis</a>
-        </div>
+          <!-- Section Header -->
+          <div data-id="17" id="header-1370-m3n4" class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
+            <div data-id="18" class="flex-1">
+              <div data-id="19" class="flex items-center gap-3 mb-2 flex-wrap">
+                <span data-id="20" class="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-wide" style="background:rgba(26,77,143,0.25); color:#60a5fa;">
+                  #ITAI-1370
+                </span>
+              </div>
+              <h2 data-id="21" id="title-1370-o5p6" class="text-2xl md:text-3xl font-bold text-white mb-1">
+                Artificial Intelligence History &amp; Survey
+              </h2>
+              <p data-id="22" class="text-text-secondary text-sm">Spring 2026</p>
+            </div>
+            <div data-id="23" class="flex flex-col items-end gap-3 min-w-[220px]">
+              <div data-id="24" class="w-full max-w-[240px]">
+                <div data-id="25" class="flex items-center justify-between text-xs text-text-secondary mb-1.5">
+                  <span data-id="26" id="progress-label-1370-q7r8">13 / 13 Complete</span>
+                  <span data-id="27" id="progress-pct-1370-s9t0">100%</span>
+                </div>
+                <div data-id="28" class="w-full h-2 rounded-full" style="background:rgba(26,77,143,0.2);">
+                  <div data-id="29" id="progress-bar-1370-u1v2" class="progress-fill h-2 rounded-full" style="background: linear-gradient(90deg, #1a4d8f, #2563eb); width:0%;"></div>
+                </div>
+              </div>
+              <a data-id="30" id="link-1370-w3x4" href="ITAI-1370.html" class="inline-flex items-center gap-1 text-sm font-semibold hover:underline" style="color:#60a5fa;">
+                View Class Page
+                <i data-id="31" data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
 
-        <div class="project-wrapper">
-            <h3>Module 5: GPT-3 & Visual Authenticity</h3>
-            <p>175 billion parameters, few-shot learning, and the blurring line between real and generated.</p>
-            <a href="module5.html" class="button">Read Essay</a>
-        </div>
+          <!-- Card Grid ITAI-1370 -->
+          <div data-id="32" id="grid-1370-y5z6" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
-        <div class="project-wrapper">
-            <h3>Module 6: Exploring T5</h3>
-            <p>One model. Every NLP task. Text in, text out.</p>
-            <a href="module6.html" class="button">View Project</a>
-        </div>
+            <!-- M01 -->
+            <div data-id="33" class="lab-card clickable-card rounded-2xl p-5 relative flex flex-col" style="background:#1e293b;" data-href="ITAI-1370/module01.html">
+              <div data-id="34" class="flex items-start justify-between mb-3">
+                <span data-id="35" class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(255,255,255,0.06); color:#cbd5e1;">M01</span>
+                <span data-id="36" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:#14532d; color:#22c55e;">✓ Complete</span>
+              </div>
+              <h3 data-id="37" class="card-title text-white font-bold text-base mb-3 flex-1">Introduction to AI</h3>
+              <div data-id="38" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="39" class="tag-blue px-2 py-0.5 rounded-full text-[10px] font-semibold">AI History</span>
+                <span data-id="40" class="tag-purple px-2 py-0.5 rounded-full text-[10px] font-semibold">Overview</span>
+              </div>
+              <div data-id="41" class="flex gap-2 mt-auto">
+                <a data-id="42" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">
+                  🔥 Open in Colab
+                </a>
+                <a data-id="43" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="44" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="45" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
 
-        <div class="project-wrapper">
-            <h3>Module 7: Neural Networks & Deep Traffic</h3>
-            <p>Do ascending or descending neuron layers train better? The results were surprising.</p>
-            <a href="module7.html" class="button">View Analysis</a>
-        </div>
+            <!-- M02 -->
+            <div data-id="46" class="lab-card clickable-card rounded-2xl p-5 relative flex flex-col" style="background:#1e293b;" data-href="ITAI-1370/module02.html">
+              <div data-id="47" class="flex items-start justify-between mb-3">
+                <span data-id="48" class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(255,255,255,0.06); color:#cbd5e1;">M02</span>
+                <span data-id="49" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:#14532d; color:#22c55e;">✓ Complete</span>
+              </div>
+              <h3 data-id="50" class="card-title text-white font-bold text-base mb-3 flex-1">AI Foundations</h3>
+              <div data-id="51" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="52" class="tag-blue px-2 py-0.5 rounded-full text-[10px] font-semibold">Logic</span>
+                <span data-id="53" class="tag-purple px-2 py-0.5 rounded-full text-[10px] font-semibold">Search</span>
+                <span data-id="54" class="tag-teal px-2 py-0.5 rounded-full text-[10px] font-semibold">Problem Solving</span>
+              </div>
+              <div data-id="55" class="flex gap-2 mt-auto">
+                <a data-id="56" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">🔥 Open in Colab</a>
+                <a data-id="57" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="58" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="59" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
 
-        <div class="project-wrapper">
-            <h3>Module 8: Are My Stories Real or Fake?</h3>
-            <p>A speculative essay on the future directions of AI research and its potential impact on society.</p>
-            <a href="module8.html" class="button">Read Essay</a>
-        </div>
+            <!-- M03 -->
+            <div data-id="60" class="lab-card clickable-card rounded-2xl p-5 relative flex flex-col" style="background:#1e293b;" data-href="ITAI-1370/module03.html">
+              <div data-id="61" class="flex items-start justify-between mb-3">
+                <span data-id="62" class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(255,255,255,0.06); color:#cbd5e1;">M03</span>
+                <span data-id="63" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:#14532d; color:#22c55e;">✓ Complete</span>
+              </div>
+              <h3 data-id="64" class="card-title text-white font-bold text-base mb-3 flex-1">Knowledge &amp; Reasoning</h3>
+              <div data-id="65" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="66" class="tag-teal px-2 py-0.5 rounded-full text-[10px] font-semibold">Expert Systems</span>
+                <span data-id="67" class="tag-blue px-2 py-0.5 rounded-full text-[10px] font-semibold">Rules</span>
+              </div>
+              <div data-id="68" class="flex gap-2 mt-auto">
+                <a data-id="69" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">🔥 Open in Colab</a>
+                <a data-id="70" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="71" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="72" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
 
-        <div class="project-wrapper">
-            <h3>Module 9: Computer Vision Classifier</h3>
-            <p>Dogs labeled as faces, electrical parts as not — and a 100% accuracy score that taught a bigger lesson.</p>
-            <a href="module9.html" class="button">View Case Study</a>
-        </div>
+            <!-- M04 -->
+            <div data-id="73" class="lab-card clickable-card rounded-2xl p-5 relative flex flex-col" style="background:#1e293b;" data-href="ITAI-1370/module04.html">
+              <div data-id="74" class="flex items-start justify-between mb-3">
+                <span data-id="75" class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(255,255,255,0.06); color:#cbd5e1;">M04</span>
+                <span data-id="76" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:#14532d; color:#22c55e;">✓ Complete</span>
+              </div>
+              <h3 data-id="77" class="card-title text-white font-bold text-base mb-3 flex-1">Machine Learning Basics</h3>
+              <div data-id="78" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="79" class="tag-purple px-2 py-0.5 rounded-full text-[10px] font-semibold">Supervised</span>
+                <span data-id="80" class="tag-teal px-2 py-0.5 rounded-full text-[10px] font-semibold">Unsupervised</span>
+              </div>
+              <div data-id="81" class="flex gap-2 mt-auto">
+                <a data-id="82" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">🔥 Open in Colab</a>
+                <a data-id="83" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="84" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="85" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
 
-        <div class="project-wrapper">
-            <h3>Module 10: IBM Watson Assistant</h3>
-            <p>A powerful AI platform, a broken demo, and a lesson in why user experience matters.</p>
-            <a href="module10.html" class="button">View Project</a>
-        </div>
+            <!-- M05 -->
+            <div data-id="86" class="lab-card clickable-card rounded-2xl p-5 relative flex flex-col" style="background:#1e293b;" data-href="ITAI-1370/module05.html">
+              <div data-id="87" class="flex items-start justify-between mb-3">
+                <span data-id="88" class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(255,255,255,0.06); color:#cbd5e1;">M05</span>
+                <span data-id="89" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:#14532d; color:#22c55e;">✓ Complete</span>
+              </div>
+              <h3 data-id="90" class="card-title text-white font-bold text-base mb-3 flex-1">Neural Networks</h3>
+              <div data-id="91" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="92" class="tag-blue px-2 py-0.5 rounded-full text-[10px] font-semibold">Perceptron</span>
+                <span data-id="93" class="tag-purple px-2 py-0.5 rounded-full text-[10px] font-semibold">Backprop</span>
+              </div>
+              <div data-id="94" class="flex gap-2 mt-auto">
+                <a data-id="95" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">🔥 Open in Colab</a>
+                <a data-id="96" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="97" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="98" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
 
-        <div class="project-wrapper">
-            <h3>Module 11: Comparing AI Assistants</h3>
-            <p>Siri searched. Rufus tried. Google Assistant had opinions.</p>
-            <a href="module11.html" class="button">View Exploration</a>
-        </div>
+            <!-- M06 -->
+            <div data-id="99" class="lab-card clickable-card rounded-2xl p-5 relative flex flex-col" style="background:#1e293b;" data-href="ITAI-1370/module06.html">
+              <div data-id="100" class="flex items-start justify-between mb-3">
+                <span data-id="101" class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(255,255,255,0.06); color:#cbd5e1;">M06</span>
+                <span data-id="102" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:#14532d; color:#22c55e;">✓ Complete</span>
+              </div>
+              <h3 data-id="103" class="card-title text-white font-bold text-base mb-3 flex-1">Deep Learning</h3>
+              <div data-id="104" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="105" class="tag-teal px-2 py-0.5 rounded-full text-[10px] font-semibold">CNN</span>
+                <span data-id="106" class="tag-blue px-2 py-0.5 rounded-full text-[10px] font-semibold">RNN</span>
+                <span data-id="107" class="tag-purple px-2 py-0.5 rounded-full text-[10px] font-semibold">Transformers</span>
+              </div>
+              <div data-id="108" class="flex gap-2 mt-auto">
+                <a data-id="109" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">🔥 Open in Colab</a>
+                <a data-id="110" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="111" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="112" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
 
-        <div class="project-wrapper">
-            <h3>Module 12: Understanding Predictive AI</h3>
-            <p>AI isn't reading your mind — it's reading your patterns.</p>
-            <a href="module12.html" class="button">View Analysis</a>
-        </div>
+            <!-- M07 -->
+            <div data-id="113" class="lab-card clickable-card rounded-2xl p-5 relative flex flex-col" style="background:#1e293b;" data-href="ITAI-1370/module07.html">
+              <div data-id="114" class="flex items-start justify-between mb-3">
+                <span data-id="115" class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(255,255,255,0.06); color:#cbd5e1;">M07</span>
+                <span data-id="116" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:#14532d; color:#22c55e;">✓ Complete</span>
+              </div>
+              <h3 data-id="117" class="card-title text-white font-bold text-base mb-3 flex-1">Natural Language Processing</h3>
+              <div data-id="118" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="119" class="tag-purple px-2 py-0.5 rounded-full text-[10px] font-semibold">NLP</span>
+                <span data-id="120" class="tag-teal px-2 py-0.5 rounded-full text-[10px] font-semibold">Text</span>
+                <span data-id="121" class="tag-blue px-2 py-0.5 rounded-full text-[10px] font-semibold">NLTK</span>
+              </div>
+              <div data-id="122" class="flex gap-2 mt-auto">
+                <a data-id="123" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">🔥 Open in Colab</a>
+                <a data-id="124" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="125" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="126" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
 
-        <div class="project-wrapper">
-            <h3>Reflections & Conclusion</h3>
-            <p>From Dartmouth in 1956 to neural networks in 2026 — what a semester of AI history taught me.</p>
-            <a href="reflections.html" class="button">View Summary</a>
-        </div>
-        <div class="project-wrapper">
-            <h3>About Me</h3>
-            <p>A brief introduction to who I am, my background, and my interests in AI and technology.</p>
-            <a href="about.html" class="button">View Page</a>
-        </div>
-    </div>
-</section>
+            <!-- M08 -->
+            <div data-id="127" class="lab-card clickable-card rounded-2xl p-5 relative flex flex-col" style="background:#1e293b;" data-href="ITAI-1370/module08.html">
+              <div data-id="128" class="flex items-start justify-between mb-3">
+                <span data-id="129" class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(255,255,255,0.06); color:#cbd5e1;">M08</span>
+                <span data-id="130" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:#14532d; color:#22c55e;">✓ Complete</span>
+              </div>
+              <h3 data-id="131" class="card-title text-white font-bold text-base mb-3 flex-1">Computer Vision</h3>
+              <div data-id="132" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="133" class="tag-blue px-2 py-0.5 rounded-full text-[10px] font-semibold">OpenCV</span>
+                <span data-id="134" class="tag-teal px-2 py-0.5 rounded-full text-[10px] font-semibold">Image Recognition</span>
+              </div>
+              <div data-id="135" class="flex gap-2 mt-auto">
+                <a data-id="136" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">🔥 Open in Colab</a>
+                <a data-id="137" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="138" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="139" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
 
-    <footer>
-        <p>&copy; 2026 Cesar Zaldivar. All rights reserved.</p>
+            <!-- M09 -->
+            <div data-id="140" class="lab-card clickable-card rounded-2xl p-5 relative flex flex-col" style="background:#1e293b;" data-href="ITAI-1370/module09.html">
+              <div data-id="141" class="flex items-start justify-between mb-3">
+                <span data-id="142" class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(255,255,255,0.06); color:#cbd5e1;">M09</span>
+                <span data-id="143" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:#14532d; color:#22c55e;">✓ Complete</span>
+              </div>
+              <h3 data-id="144" class="card-title text-white font-bold text-base mb-3 flex-1">Reinforcement Learning</h3>
+              <div data-id="145" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="146" class="tag-teal px-2 py-0.5 rounded-full text-[10px] font-semibold">Q-Learning</span>
+                <span data-id="147" class="tag-purple px-2 py-0.5 rounded-full text-[10px] font-semibold">Rewards</span>
+              </div>
+              <div data-id="148" class="flex gap-2 mt-auto">
+                <a data-id="149" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">🔥 Open in Colab</a>
+                <a data-id="150" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="151" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="152" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+
+            <!-- M10 -->
+            <div data-id="153" class="lab-card clickable-card rounded-2xl p-5 relative flex flex-col" style="background:#1e293b;" data-href="ITAI-1370/module10.html">
+              <div data-id="154" class="flex items-start justify-between mb-3">
+                <span data-id="155" class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(255,255,255,0.06); color:#cbd5e1;">M10</span>
+                <span data-id="156" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:#14532d; color:#22c55e;">✓ Complete</span>
+              </div>
+              <h3 data-id="157" class="card-title text-white font-bold text-base mb-3 flex-1">AI Ethics &amp; Bias</h3>
+              <div data-id="158" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="159" class="tag-blue px-2 py-0.5 rounded-full text-[10px] font-semibold">Fairness</span>
+                <span data-id="160" class="tag-teal px-2 py-0.5 rounded-full text-[10px] font-semibold">Transparency</span>
+              </div>
+              <div data-id="161" class="flex gap-2 mt-auto">
+                <a data-id="162" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">🔥 Open in Colab</a>
+                <a data-id="163" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="164" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="165" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+
+            <!-- M11 -->
+            <div data-id="166" class="lab-card clickable-card rounded-2xl p-5 relative flex flex-col" style="background:#1e293b;" data-href="ITAI-1370/module11.html">
+              <div data-id="167" class="flex items-start justify-between mb-3">
+                <span data-id="168" class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(255,255,255,0.06); color:#cbd5e1;">M11</span>
+                <span data-id="169" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:#14532d; color:#22c55e;">✓ Complete</span>
+              </div>
+              <h3 data-id="170" class="card-title text-white font-bold text-base mb-3 flex-1">AI in Industry</h3>
+              <div data-id="171" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="172" class="tag-purple px-2 py-0.5 rounded-full text-[10px] font-semibold">Real-world</span>
+                <span data-id="173" class="tag-blue px-2 py-0.5 rounded-full text-[10px] font-semibold">Applications</span>
+              </div>
+              <div data-id="174" class="flex gap-2 mt-auto">
+                <a data-id="175" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">🔥 Open in Colab</a>
+                <a data-id="176" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="177" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="178" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+
+            <!-- M12 -->
+            <div data-id="179" class="lab-card clickable-card rounded-2xl p-5 relative flex flex-col" style="background:#1e293b;" data-href="ITAI-1370/module12.html">
+              <div data-id="180" class="flex items-start justify-between mb-3">
+                <span data-id="181" class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(255,255,255,0.06); color:#cbd5e1;">M12</span>
+                <span data-id="182" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:#14532d; color:#22c55e;">✓ Complete</span>
+              </div>
+              <h3 data-id="183" class="card-title text-white font-bold text-base mb-3 flex-1">Final Projects</h3>
+              <div data-id="184" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="185" class="tag-teal px-2 py-0.5 rounded-full text-[10px] font-semibold">Capstone</span>
+                <span data-id="186" class="tag-purple px-2 py-0.5 rounded-full text-[10px] font-semibold">Portfolio</span>
+              </div>
+              <div data-id="187" class="flex gap-2 mt-auto">
+                <a data-id="188" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">🔥 Open in Colab</a>
+                <a data-id="189" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="190" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="191" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+
+            <!-- Reflections (Gold Card) — spans full row on lg -->
+            <div data-id="192" class="lab-card gold-card clickable-card rounded-2xl p-5 relative flex flex-col sm:col-span-2 lg:col-span-3" style="background:#1e293b;" data-href="ITAI-1370/reflections.html">
+              <div data-id="193" class="flex items-start justify-between mb-3">
+                <span data-id="194" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(217,119,6,0.2); color:#fbbf24;">
+                  🏆 Reflections
+                </span>
+                <span data-id="195" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:#14532d; color:#22c55e;">✓ Complete</span>
+              </div>
+              <h3 data-id="196" class="card-title text-white font-bold text-base mb-2">Course Reflections</h3>
+              <p data-id="197" class="text-text-secondary text-sm italic mb-4">"End-of-course reflection — lessons learned, growth, and next steps."</p>
+              <div data-id="198" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="199" class="tag-gold px-2 py-0.5 rounded-full text-[10px] font-semibold">Summary</span>
+                <span data-id="200" class="tag-gold px-2 py-0.5 rounded-full text-[10px] font-semibold">Growth</span>
+                <span data-id="201" class="tag-gold px-2 py-0.5 rounded-full text-[10px] font-semibold">Insights</span>
+              </div>
+              <div data-id="202" class="flex gap-2 mt-auto">
+                <a data-id="203" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">🔥 Open in Colab</a>
+                <a data-id="204" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="205" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="206" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ DIVIDER ============ -->
+      <div data-id="207" class="max-w-[1200px] mx-auto px-6">
+        <hr data-id="208" class="section-divider my-4" />
+      </div>
+
+      <!-- ============ ITAI-1371 SECTION ============ -->
+      <section data-id="209" id="section-1371-a2b3" class="py-12 md:py-16">
+        <div data-id="210" class="max-w-[1200px] mx-auto px-6">
+
+          <!-- Section Header -->
+          <div data-id="211" id="header-1371-c4d5" class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
+            <div data-id="212" class="flex-1">
+              <div data-id="213" class="flex items-center gap-3 mb-2 flex-wrap">
+                <span data-id="214" class="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-wide" style="background:rgba(26,77,143,0.25); color:#60a5fa;">
+                  #ITAI-1371
+                </span>
+              </div>
+              <h2 data-id="215" id="title-1371-e6f7" class="text-2xl md:text-3xl font-bold text-white mb-1">
+                Machine Learning
+              </h2>
+              <p data-id="216" class="text-text-secondary text-sm">Summer 2026 — In Progress 🔄</p>
+            </div>
+            <div data-id="217" class="flex flex-col items-end gap-3 min-w-[220px]">
+              <div data-id="218" class="w-full max-w-[240px]">
+                <div data-id="219" class="flex items-center justify-between text-xs text-text-secondary mb-1.5">
+                  <span data-id="220" id="progress-label-1371-g8h9">1 / 12 Complete</span>
+                  <span data-id="221" id="progress-pct-1371-i0j1">8%</span>
+                </div>
+                <div data-id="222" class="w-full h-2 rounded-full" style="background:rgba(26,77,143,0.2);">
+                  <div data-id="223" id="progress-bar-1371-k2l3" class="progress-fill h-2 rounded-full" style="background: linear-gradient(90deg, #1a4d8f, #2563eb); width:0%;"></div>
+                </div>
+              </div>
+              <a data-id="224" id="link-1371-m4n5" href="ITAI-1371.html" class="inline-flex items-center gap-1 text-sm font-semibold hover:underline" style="color:#60a5fa;">
+                View Class Page
+                <i data-id="225" data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card Grid ITAI-1371 -->
+          <div data-id="226" id="grid-1371-o6p7" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+            <!-- M01 — In Progress -->
+            <div data-id="227" class="lab-card clickable-card rounded-2xl p-5 relative flex flex-col" style="background:#1e293b;" data-href="ITAI-1371/module01.html">
+              <div data-id="228" class="flex items-start justify-between mb-3">
+                <span data-id="229" class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(255,255,255,0.06); color:#cbd5e1;">M01</span>
+                <span data-id="230" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:rgba(26,77,143,0.3); color:#60a5fa;">
+                  <span data-id="231" class="w-1.5 h-1.5 rounded-full pulse-dot inline-block" style="background:#60a5fa;"></span>
+                  In Progress
+                </span>
+              </div>
+              <h3 data-id="232" class="card-title text-white font-bold text-base mb-3 flex-1">ML Fundamentals</h3>
+              <div data-id="233" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="234" class="tag-blue px-2 py-0.5 rounded-full text-[10px] font-semibold">Intro</span>
+                <span data-id="235" class="tag-purple px-2 py-0.5 rounded-full text-[10px] font-semibold">Python</span>
+                <span data-id="236" class="tag-teal px-2 py-0.5 rounded-full text-[10px] font-semibold">Colab</span>
+              </div>
+              <div data-id="237" class="flex gap-2 mt-auto">
+                <a data-id="238" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">🔥 Open in Colab</a>
+                <a data-id="239" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="240" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="241" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+
+            <!-- M02 — Coming Soon -->
+            <div data-id="242" class="lab-card coming-soon-card tooltip-wrapper rounded-2xl p-5 relative flex flex-col" style="background:#1e293b;">
+              <span data-id="243" class="tooltip-text">Coming soon!</span>
+              <div data-id="244" class="flex items-start justify-between mb-3">
+                <span data-id="245" class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(255,255,255,0.06); color:#cbd5e1;">M02</span>
+                <span data-id="246" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:#334155; color:#94a3b8;">📋 Coming Soon</span>
+              </div>
+              <h3 data-id="247" class="card-title text-white font-bold text-base mb-3 flex-1" style="opacity:0.6;">Data Preprocessing</h3>
+              <div data-id="248" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="249" class="tag-blue px-2 py-0.5 rounded-full text-[10px] font-semibold" style="opacity:0.5;">Pandas</span>
+                <span data-id="250" class="tag-purple px-2 py-0.5 rounded-full text-[10px] font-semibold" style="opacity:0.5;">NumPy</span>
+                <span data-id="251" class="tag-teal px-2 py-0.5 rounded-full text-[10px] font-semibold" style="opacity:0.5;">Cleaning</span>
+              </div>
+              <div data-id="252" class="flex gap-2 mt-auto">
+                <span data-id="253" class="btn-disabled inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">🔥 Open in Colab</span>
+                <span data-id="254" class="btn-disabled inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="255" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="256" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </span>
+              </div>
+            </div>
+
+            <!-- M03 through M12 — Coming Soon -->
+            <div data-id="257" class="lab-card coming-soon-card tooltip-wrapper rounded-2xl p-5 relative flex flex-col" style="background:#1e293b;">
+              <span data-id="258" class="tooltip-text">Coming soon!</span>
+              <div data-id="259" class="flex items-start justify-between mb-3">
+                <span data-id="260" class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(255,255,255,0.06); color:#cbd5e1;">M03</span>
+                <span data-id="261" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:#334155; color:#94a3b8;">📋 Coming Soon</span>
+              </div>
+              <h3 data-id="262" class="card-title text-white font-bold text-base mb-3 flex-1" style="opacity:0.6;">Module 03</h3>
+              <div data-id="263" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="264" class="tag-blue px-2 py-0.5 rounded-full text-[10px] font-semibold" style="opacity:0.5;">Machine Learning</span>
+                <span data-id="265" class="tag-purple px-2 py-0.5 rounded-full text-[10px] font-semibold" style="opacity:0.5;">ITAI-1371</span>
+              </div>
+              <div data-id="266" class="flex gap-2 mt-auto">
+                <span data-id="267" class="btn-disabled inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">🔥 Open in Colab</span>
+                <span data-id="268" class="btn-disabled inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="269" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="270" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </span>
+              </div>
+            </div>
+
+            <div data-id="271" class="lab-card coming-soon-card tooltip-wrapper rounded-2xl p-5 relative flex flex-col" style="background:#1e293b;">
+              <span data-id="272" class="tooltip-text">Coming soon!</span>
+              <div data-id="273" class="flex items-start justify-between mb-3">
+                <span data-id="274" class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(255,255,255,0.06); color:#cbd5e1;">M04</span>
+                <span data-id="275" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:#334155; color:#94a3b8;">📋 Coming Soon</span>
+              </div>
+              <h3 data-id="276" class="card-title text-white font-bold text-base mb-3 flex-1" style="opacity:0.6;">Module 04</h3>
+              <div data-id="277" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="278" class="tag-blue px-2 py-0.5 rounded-full text-[10px] font-semibold" style="opacity:0.5;">Machine Learning</span>
+                <span data-id="279" class="tag-purple px-2 py-0.5 rounded-full text-[10px] font-semibold" style="opacity:0.5;">ITAI-1371</span>
+              </div>
+              <div data-id="280" class="flex gap-2 mt-auto">
+                <span data-id="281" class="btn-disabled inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">🔥 Open in Colab</span>
+                <span data-id="282" class="btn-disabled inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="283" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="284" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </span>
+              </div>
+            </div>
+
+            <div data-id="285" class="lab-card coming-soon-card tooltip-wrapper rounded-2xl p-5 relative flex flex-col" style="background:#1e293b;">
+              <span data-id="286" class="tooltip-text">Coming soon!</span>
+              <div data-id="287" class="flex items-start justify-between mb-3">
+                <span data-id="288" class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(255,255,255,0.06); color:#cbd5e1;">M05</span>
+                <span data-id="289" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:#334155; color:#94a3b8;">📋 Coming Soon</span>
+              </div>
+              <h3 data-id="290" class="card-title text-white font-bold text-base mb-3 flex-1" style="opacity:0.6;">Module 05</h3>
+              <div data-id="291" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="292" class="tag-teal px-2 py-0.5 rounded-full text-[10px] font-semibold" style="opacity:0.5;">Machine Learning</span>
+                <span data-id="293" class="tag-purple px-2 py-0.5 rounded-full text-[10px] font-semibold" style="opacity:0.5;">ITAI-1371</span>
+              </div>
+              <div data-id="294" class="flex gap-2 mt-auto">
+                <span data-id="295" class="btn-disabled inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">🔥 Open in Colab</span>
+                <span data-id="296" class="btn-disabled inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="297" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="298" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </span>
+              </div>
+            </div>
+
+            <div data-id="299" class="lab-card coming-soon-card tooltip-wrapper rounded-2xl p-5 relative flex flex-col" style="background:#1e293b;">
+              <span data-id="300" class="tooltip-text">Coming soon!</span>
+              <div data-id="301" class="flex items-start justify-between mb-3">
+                <span data-id="302" class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(255,255,255,0.06); color:#cbd5e1;">M06</span>
+                <span data-id="303" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:#334155; color:#94a3b8;">📋 Coming Soon</span>
+              </div>
+              <h3 data-id="304" class="card-title text-white font-bold text-base mb-3 flex-1" style="opacity:0.6;">Module 06</h3>
+              <div data-id="305" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="306" class="tag-blue px-2 py-0.5 rounded-full text-[10px] font-semibold" style="opacity:0.5;">Machine Learning</span>
+                <span data-id="307" class="tag-purple px-2 py-0.5 rounded-full text-[10px] font-semibold" style="opacity:0.5;">ITAI-1371</span>
+              </div>
+              <div data-id="308" class="flex gap-2 mt-auto">
+                <span data-id="309" class="btn-disabled inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">🔥 Open in Colab</span>
+                <span data-id="310" class="btn-disabled inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="311" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="312" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </span>
+              </div>
+            </div>
+
+            <div data-id="313" class="lab-card coming-soon-card tooltip-wrapper rounded-2xl p-5 relative flex flex-col" style="background:#1e293b;">
+              <span data-id="314" class="tooltip-text">Coming soon!</span>
+              <div data-id="315" class="flex items-start justify-between mb-3">
+                <span data-id="316" class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(255,255,255,0.06); color:#cbd5e1;">M07</span>
+                <span data-id="317" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:#334155; color:#94a3b8;">📋 Coming Soon</span>
+              </div>
+              <h3 data-id="318" class="card-title text-white font-bold text-base mb-3 flex-1" style="opacity:0.6;">Module 07</h3>
+              <div data-id="319" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="320" class="tag-teal px-2 py-0.5 rounded-full text-[10px] font-semibold" style="opacity:0.5;">Machine Learning</span>
+                <span data-id="321" class="tag-blue px-2 py-0.5 rounded-full text-[10px] font-semibold" style="opacity:0.5;">ITAI-1371</span>
+              </div>
+              <div data-id="322" class="flex gap-2 mt-auto">
+                <span data-id="323" class="btn-disabled inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">🔥 Open in Colab</span>
+                <span data-id="324" class="btn-disabled inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="325" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="326" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </span>
+              </div>
+            </div>
+
+            <div data-id="327" class="lab-card coming-soon-card tooltip-wrapper rounded-2xl p-5 relative flex flex-col" style="background:#1e293b;">
+              <span data-id="328" class="tooltip-text">Coming soon!</span>
+              <div data-id="329" class="flex items-start justify-between mb-3">
+                <span data-id="330" class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(255,255,255,0.06); color:#cbd5e1;">M08</span>
+                <span data-id="331" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:#334155; color:#94a3b8;">📋 Coming Soon</span>
+              </div>
+              <h3 data-id="332" class="card-title text-white font-bold text-base mb-3 flex-1" style="opacity:0.6;">Module 08</h3>
+              <div data-id="333" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="334" class="tag-purple px-2 py-0.5 rounded-full text-[10px] font-semibold" style="opacity:0.5;">Machine Learning</span>
+                <span data-id="335" class="tag-teal px-2 py-0.5 rounded-full text-[10px] font-semibold" style="opacity:0.5;">ITAI-1371</span>
+              </div>
+              <div data-id="336" class="flex gap-2 mt-auto">
+                <span data-id="337" class="btn-disabled inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">🔥 Open in Colab</span>
+                <span data-id="338" class="btn-disabled inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="339" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="340" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </span>
+              </div>
+            </div>
+
+            <div data-id="341" class="lab-card coming-soon-card tooltip-wrapper rounded-2xl p-5 relative flex flex-col" style="background:#1e293b;">
+              <span data-id="342" class="tooltip-text">Coming soon!</span>
+              <div data-id="343" class="flex items-start justify-between mb-3">
+                <span data-id="344" class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(255,255,255,0.06); color:#cbd5e1;">M09</span>
+                <span data-id="345" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:#334155; color:#94a3b8;">📋 Coming Soon</span>
+              </div>
+              <h3 data-id="346" class="card-title text-white font-bold text-base mb-3 flex-1" style="opacity:0.6;">Module 09</h3>
+              <div data-id="347" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="348" class="tag-blue px-2 py-0.5 rounded-full text-[10px] font-semibold" style="opacity:0.5;">Machine Learning</span>
+                <span data-id="349" class="tag-purple px-2 py-0.5 rounded-full text-[10px] font-semibold" style="opacity:0.5;">ITAI-1371</span>
+              </div>
+              <div data-id="350" class="flex gap-2 mt-auto">
+                <span data-id="351" class="btn-disabled inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">🔥 Open in Colab</span>
+                <span data-id="352" class="btn-disabled inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="353" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="354" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </span>
+              </div>
+            </div>
+
+            <div data-id="355" class="lab-card coming-soon-card tooltip-wrapper rounded-2xl p-5 relative flex flex-col" style="background:#1e293b;">
+              <span data-id="356" class="tooltip-text">Coming soon!</span>
+              <div data-id="357" class="flex items-start justify-between mb-3">
+                <span data-id="358" class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(255,255,255,0.06); color:#cbd5e1;">M10</span>
+                <span data-id="359" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:#334155; color:#94a3b8;">📋 Coming Soon</span>
+              </div>
+              <h3 data-id="360" class="card-title text-white font-bold text-base mb-3 flex-1" style="opacity:0.6;">Module 10</h3>
+              <div data-id="361" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="362" class="tag-teal px-2 py-0.5 rounded-full text-[10px] font-semibold" style="opacity:0.5;">Machine Learning</span>
+                <span data-id="363" class="tag-blue px-2 py-0.5 rounded-full text-[10px] font-semibold" style="opacity:0.5;">ITAI-1371</span>
+              </div>
+              <div data-id="364" class="flex gap-2 mt-auto">
+                <span data-id="365" class="btn-disabled inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">🔥 Open in Colab</span>
+                <span data-id="366" class="btn-disabled inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="367" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="368" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </span>
+              </div>
+            </div>
+
+            <div data-id="369" class="lab-card coming-soon-card tooltip-wrapper rounded-2xl p-5 relative flex flex-col" style="background:#1e293b;">
+              <span data-id="370" class="tooltip-text">Coming soon!</span>
+              <div data-id="371" class="flex items-start justify-between mb-3">
+                <span data-id="372" class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(255,255,255,0.06); color:#cbd5e1;">M11</span>
+                <span data-id="373" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:#334155; color:#94a3b8;">📋 Coming Soon</span>
+              </div>
+              <h3 data-id="374" class="card-title text-white font-bold text-base mb-3 flex-1" style="opacity:0.6;">Module 11</h3>
+              <div data-id="375" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="376" class="tag-purple px-2 py-0.5 rounded-full text-[10px] font-semibold" style="opacity:0.5;">Machine Learning</span>
+                <span data-id="377" class="tag-teal px-2 py-0.5 rounded-full text-[10px] font-semibold" style="opacity:0.5;">ITAI-1371</span>
+              </div>
+              <div data-id="378" class="flex gap-2 mt-auto">
+                <span data-id="379" class="btn-disabled inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">🔥 Open in Colab</span>
+                <span data-id="380" class="btn-disabled inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="381" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="382" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </span>
+              </div>
+            </div>
+
+            <div data-id="383" class="lab-card coming-soon-card tooltip-wrapper rounded-2xl p-5 relative flex flex-col" style="background:#1e293b;">
+              <span data-id="384" class="tooltip-text">Coming soon!</span>
+              <div data-id="385" class="flex items-start justify-between mb-3">
+                <span data-id="386" class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider" style="background:rgba(255,255,255,0.06); color:#cbd5e1;">M12</span>
+                <span data-id="387" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:#334155; color:#94a3b8;">📋 Coming Soon</span>
+              </div>
+              <h3 data-id="388" class="card-title text-white font-bold text-base mb-3 flex-1" style="opacity:0.6;">Module 12</h3>
+              <div data-id="389" class="flex flex-wrap gap-1.5 mb-4">
+                <span data-id="390" class="tag-blue px-2 py-0.5 rounded-full text-[10px] font-semibold" style="opacity:0.5;">Machine Learning</span>
+                <span data-id="391" class="tag-purple px-2 py-0.5 rounded-full text-[10px] font-semibold" style="opacity:0.5;">ITAI-1371</span>
+              </div>
+              <div data-id="392" class="flex gap-2 mt-auto">
+                <span data-id="393" class="btn-disabled inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#F9AB00; color:#1a1a1a;">🔥 Open in Colab</span>
+                <span data-id="394" class="btn-disabled inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#24292e; color:#fff;">
+                  <svg data-id="395" class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path data-id="396" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                  GitHub
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer data-id="397" id="footer-q1r2" class="py-10 text-center border-t" style="border-color: rgba(255,255,255,0.05);">
+      <div data-id="398" class="max-w-[1200px] mx-auto px-6">
+        <p data-id="399" class="text-text-muted text-sm">
+          Cesar Zaldivar · Houston Community College · AI &amp; Machine Learning Portfolio
+        </p>
+        <p data-id="400" class="text-text-muted text-xs mt-2 opacity-60">Made by Copilot</p>
+      </div>
     </footer>
-    <button id="back-to-top" onclick="scrollToTop()">Back to Top</button>
-<script src="script.js"></script>
-</body>
+
+    <script>
+      // Lucide icons — progressive enhancement
+      if (typeof lucide !== "undefined" && typeof lucide.createIcons === "function") {
+        lucide.createIcons();
+      }
+
+      // =============================================
+      // Progress bar animation
+      // =============================================
+      function animateProgressBar(barId, targetPercent) {
+        var bar = document.getElementById(barId);
+        if (!bar) return;
+        // Start from 0, animate to target
+        var start = null;
+        var duration = 1200; // ms
+        function step(timestamp) {
+          if (!start) start = timestamp;
+          var elapsed = timestamp - start;
+          var progress = Math.min(elapsed / duration, 1);
+          // Ease out cubic
+          var eased = 1 - Math.pow(1 - progress, 3);
+          bar.style.width = (eased * targetPercent) + '%';
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          }
+        }
+        requestAnimationFrame(step);
+      }
+
+      // Trigger on load — slight delay for visual effect
+      setTimeout(function() {
+        // ITAI-1370: 13/13 = 100%
+        animateProgressBar('progress-bar-1370-u1v2', 100);
+        // ITAI-1371: 1/12 ≈ 8.33%
+        animateProgressBar('progress-bar-1371-k2l3', 8.33);
+      }, 300);
+
+      // =============================================
+      // Clickable cards — navigate to module page
+      // =============================================
+      document.querySelectorAll('.lab-card.clickable-card').forEach(function(card) {
+        card.addEventListener('click', function(e) {
+          // Don't navigate if user clicked a button/link inside the card
+          if (e.target.closest('a')) return;
+          var href = card.getAttribute('data-href');
+          if (href) {
+            window.location.href = href;
+          }
+        });
+      });
+
+      // Prevent button clicks from propagating to card
+      document.querySelectorAll('.lab-card a').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.stopPropagation();
+        });
+      });
+    </script>
+  </body>
 </html>
