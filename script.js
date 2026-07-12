@@ -1,6 +1,6 @@
 
 // Fetch and insert the navigation bar from nav.html
-fetch("nav.html")
+fetch("/nav.html")  // Fetch the navigation bar from nav.html from any subfolder on Local + GitHub Pages
     .then(response => response.text())
     .then(data => {
         document.getElementById("nav-placeholder").innerHTML = data;
